@@ -158,18 +158,18 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
     public String apiFileFolder() {
         if (apiPackage.startsWith(invokerPackage + "\\")) {
             // need to strip out invokerPackage from path
-            return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(apiPackage, invokerPackage + "\\"), srcBasePath));
+            return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(apiPackage, invokerPackage + "\\"), srcBasePath) + File.separator + "Generated");
         }
-        return (outputFolder + File.separator + toSrcPath(apiPackage, srcBasePath));
+        return (outputFolder + File.separator + toSrcPath(apiPackage, srcBasePath) + File.separator + "Generated");
     }
 
     @Override
     public String modelFileFolder() {
         if (modelPackage.startsWith(invokerPackage + "\\")) {
             // need to strip out invokerPackage from path
-            return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(modelPackage, invokerPackage + "\\"), srcBasePath));
+            return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(modelPackage, invokerPackage + "\\"), srcBasePath) + File.separator + "Generated");
         }
-        return (outputFolder + File.separator + toSrcPath(modelPackage, srcBasePath));
+        return (outputFolder + File.separator + toSrcPath(modelPackage, srcBasePath) + File.separator + "Generated");
     }
 
     @Override
@@ -219,8 +219,10 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
                 additionalProperties.put("isSlimPsr7", Boolean.TRUE);
         }
 
-        // Add apigen.php in Routes folder
-        supportingFiles.add(new SupportingFile("routes.mustache", "Routes", "apigen.php"));
+        // Add apigen.php in Routes/Generated folder
+        supportingFiles.add(new SupportingFile("routes.mustache", "Routes/Generated", "apigen.php"));
+        // Add .gitignore to Generated folder
+        // supportingFiles.add(new SupportingFile("gitignore", "Generated", ".gitignore"));
     }
 
     @Override
@@ -254,7 +256,7 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
 
         // generate authenticator only when hasAuthMethods === true
         if (objs.containsKey("hasAuthMethods") && Boolean.TRUE.equals(objs.get("hasAuthMethods"))) {
-            supportingFiles.add(new SupportingFile("abstract_authenticator.mustache", toSrcPath(authPackage, srcBasePath), toAbstractName("Authenticator") + ".php"));
+            supportingFiles.add(new SupportingFile("abstract_authenticator.mustache", toSrcPath(authPackage, srcBasePath) + File.separator + "Generated", toAbstractName("Authenticator") + ".php"));
         }
         return objs;
     }
