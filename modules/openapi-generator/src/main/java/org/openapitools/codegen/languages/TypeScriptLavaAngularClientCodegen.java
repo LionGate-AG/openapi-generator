@@ -150,18 +150,10 @@ public class TypeScriptLavaAngularClientCodegen extends AbstractTypeScriptClient
     @Override
     public void processOpts() {
         super.processOpts();
-        supportingFiles.add(
-                new SupportingFile("models.mustache", modelPackage().replace('.', File.separatorChar), "models.ts"));
-        supportingFiles
-                .add(new SupportingFile("apis.mustache", apiPackage().replace('.', File.separatorChar), "api.ts"));
-        // supportingFiles.add(new SupportingFile("index.mustache", getIndexDirectory(), "index.ts"));
+        supportingFiles.add(new SupportingFile("models.mustache", modelPackage().replace('.', File.separatorChar), "models.ts"));
+        supportingFiles.add(new SupportingFile("apis.mustache", apiPackage().replace('.', File.separatorChar), "api.ts"));
         supportingFiles.add(new SupportingFile("api.module.mustache", getIndexDirectory(), "api.module.ts"));
-        // supportingFiles.add(new SupportingFile("configuration.mustache", getIndexDirectory(), "configuration.ts"));
-        // supportingFiles.add(new SupportingFile("variables.mustache", getIndexDirectory(), "variables.ts"));
-        // supportingFiles.add(new SupportingFile("encoder.mustache", getIndexDirectory(), "encoder.ts"));
         supportingFiles.add(new SupportingFile("gitignore", "", ".gitignore"));
-        // supportingFiles.add(new SupportingFile("git_push.sh.mustache", "", "git_push.sh"));
-        // supportingFiles.add(new SupportingFile("README.mustache", getIndexDirectory(), "README.md"));
 
         // determine NG version
         SemVer ngVersion;
@@ -315,7 +307,6 @@ public class TypeScriptLavaAngularClientCodegen extends AbstractTypeScriptClient
             additionalProperties.put("rxjsVersion", "6.1.0");
         }
 
-        // supportingFiles.add(new SupportingFile("ng-package.mustache", getIndexDirectory(), "ng-package.json"));
 
         // Specific ng-packagr configuration
         if (ngVersion.atLeast("11.0.0")) {
@@ -352,10 +343,6 @@ public class TypeScriptLavaAngularClientCodegen extends AbstractTypeScriptClient
             // compatible versions to Angular 6+
             additionalProperties.put("zonejsVersion", "0.8.26");
         }
-
-        //Files for building our lib
-        // supportingFiles.add(new SupportingFile("package.mustache", getIndexDirectory(), "package.json"));
-        // supportingFiles.add(new SupportingFile("tsconfig.mustache", getIndexDirectory(), "tsconfig.json"));
     }
 
     private String getIndexDirectory() {
