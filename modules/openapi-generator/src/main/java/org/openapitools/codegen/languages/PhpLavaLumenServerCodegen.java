@@ -106,7 +106,8 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
 
         variableNamingConvention = "camelCase";
         artifactVersion = "1.0.0";
-        setInvokerPackage("OpenAPIServer");
+        setInvokerPackage(invokerPackage);
+        
         authPackage = invokerPackage + "\\" + authDirName;
         interfacesPackage = invokerPackage + "\\" + interfacesDirName;
         outputFolder = "generated-code" + File.separator + "Lava";
