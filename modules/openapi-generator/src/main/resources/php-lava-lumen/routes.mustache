@@ -30,8 +30,14 @@ $router->get('/', function () use ($router) {
  * Summary: {{summary}}
  * Notes: {{notes}}
  */
+{{#vendorExtensions.x-lumen-middleware}}
+$router->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', ['middleware' => '{{vendorExtensions.x-lumen-middleware}}', 'uses' => '{{notAbstartClassname}}@{{operationId}}']);
+
+{{/vendorExtensions.x-lumen-middleware}}
+{{^vendorExtensions.x-lumen-middleware}}
 $router->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', '{{notAbstartClassname}}@{{operationId}}');
 
+{{/vendorExtensions.x-lumen-middleware}}
 {{/operation}}
 {{/operations}}
 {{/apis}}
