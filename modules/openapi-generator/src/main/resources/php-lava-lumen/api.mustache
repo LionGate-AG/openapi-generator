@@ -29,7 +29,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
      * @deprecated
   {{/isDeprecated}}
      */
-    public function {{operationId}}(Request $request{{#pathParams}}, ${{paramName}}{{^-last}}, {{/-last}}{{/pathParams}})
+    public function {{operationId}}(Request $request{{#hasPathParams}}, {{/hasPathParams}}{{#hasPathParams}}{{#pathParams}}${{paramName}}{{^-last}}, {{/-last}}{{/pathParams}}{{/hasPathParams}})
     {
         $input = $request->all();
 

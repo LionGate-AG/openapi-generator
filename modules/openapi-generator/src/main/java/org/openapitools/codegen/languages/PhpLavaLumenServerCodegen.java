@@ -108,7 +108,7 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
         artifactVersion = "1.0.0";
         setInvokerPackage(invokerPackage);
         
-        // authPackage = invokerPackage + "\\" + authDirName;
+        authPackage = invokerPackage + "\\" + authDirName;
         interfacesPackage = invokerPackage + "\\" + interfacesDirName;
         outputFolder = "generated-code" + File.separator + "Lava";
         apiTemplateFiles.put("api.mustache", ".php");
@@ -183,6 +183,9 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
             // Update interfacesPackage
             interfacesPackage = invokerPackage + "\\" + interfacesDirName;
         }
+
+        additionalProperties.put("authPackage", authPackage + "\\" +"Generated");
+        additionalProperties.put("authSrcPath", "./" + toSrcPath(authPackage, srcBasePath));
 
         // same for interfaces package
         additionalProperties.put("interfacesPackage", interfacesPackage);
