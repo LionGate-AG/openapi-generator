@@ -274,6 +274,7 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
         }
         // set notAbstartClassname for routes
         additionalProperties.put("notAbstartClassname", (camelize(name) + "Api"));
+        additionalProperties.put("tagName", (name.toLowerCase(Locale.ROOT)));
         return toAbstractName(camelize(name) + "Api");
     }
 

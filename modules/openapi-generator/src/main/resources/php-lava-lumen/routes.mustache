@@ -31,11 +31,11 @@ $router->get('/', function () use ($router) {
  * Notes: {{notes}}
  */
 {{#vendorExtensions.x-lumen-middleware}}
-$router->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', ['middleware' => '{{vendorExtensions.x-lumen-middleware}}', 'uses' => '{{notAbstartClassname}}@{{operationId}}']);
+$router->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', ['middleware' => '{{vendorExtensions.x-lumen-middleware}}', 'uses' => '{{notAbstartClassname}}@{{operationId}}', 'as' => '{{tagName}}.{{operationId}}']);
 
 {{/vendorExtensions.x-lumen-middleware}}
 {{^vendorExtensions.x-lumen-middleware}}
-$router->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', '{{notAbstartClassname}}@{{operationId}}');
+$router->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', [ 'uses' => '{{notAbstartClassname}}@{{operationId}}', 'as' => '{{tagName}}.{{operationId}}']);
 
 {{/vendorExtensions.x-lumen-middleware}}
 {{/operation}}
