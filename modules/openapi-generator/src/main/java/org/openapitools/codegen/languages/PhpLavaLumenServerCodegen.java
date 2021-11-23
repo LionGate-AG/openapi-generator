@@ -198,8 +198,8 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
             // Update interfacesPackage
             interfacesPackage = invokerPackage + "\\" + interfacesDirName;
         } else {
-            authPackage = this.getCamelizeOutputDir(authDirName);
-            interfacesPackage = this.getCamelizeOutputDir(interfacesDirName);
+            authPackage = "App" + "\\" + authDirName;
+            interfacesPackage = "App" + "\\" + interfacesDirName;
         }
 
         additionalProperties.put("authPackage", authPackage + "\\" +"Generated");
@@ -284,9 +284,14 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
 
         // generate authenticator only when hasAuthMethods === true
         if (objs.containsKey("hasAuthMethods") && Boolean.TRUE.equals(objs.get("hasAuthMethods"))) {
-            supportingFiles.add(new SupportingFile("abstract_authenticator.mustache", toSrcPath(authPackage, srcBasePath) + File.separator + "Generated", toAbstractName("Authenticator") + ".php"));
+            if(invokerPackage != "") {
+                supportingFiles.add(new SupportingFile("abstract_authenticator.mustache", toSrcPath(authPackage, srcBasePath) + File.separator + "Generated", toAbstractName("Authenticator") + ".php"));
+            } else {
+                supportingFiles.add(new SupportingFile("abstract_authenticator.mustache", toSrcPath(this.getCamelizeOutputDir(authPackage) , srcBasePath) + File.separator + "Generated", toAbstractName("Authenticator") + ".php"));
+            }
         }
         return objs;
+       
     }
 
     @Override
