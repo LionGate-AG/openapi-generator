@@ -157,31 +157,49 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
 
     @Override
     public String apiFileFolder() {
-        if (apiPackage.startsWith(invokerPackage + "\\")) {
-            // need to strip out invokerPackage from path
-            return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(apiPackage, invokerPackage + "\\"), srcBasePath) + File.separator + "Generated");
+        if(invokerPackage != "") {
+            if (apiPackage.startsWith(invokerPackage + "\\")) {
+                // need to strip out invokerPackage from path
+    
+                return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(apiPackage, invokerPackage + "\\"), srcBasePath) + File.separator + "Generated");
+            }
+           
+            return (outputFolder + File.separator + toSrcPath(apiPackage, srcBasePath) + File.separator + "Generated");
+
+        } else {
+            if(!additionalProperties.containsKey("customPackageName")) {
+                additionalProperties.put("customPackageName", "App");
+            }
+            return (outputFolder + File.separator + toSrcPath(this.getCamelizeOutputDir(apiPackage), srcBasePath) + File.separator + "Generated");
         }
-        return (outputFolder + File.separator + toSrcPath(apiPackage, srcBasePath) + File.separator + "Generated");
+        
     }
 
     @Override
     public String modelFileFolder() {
-        if (modelPackage.startsWith(invokerPackage + "\\")) {
-            // need to strip out invokerPackage from path
-            return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(modelPackage, invokerPackage + "\\"), srcBasePath) + File.separator + "Generated");
+        if(invokerPackage != "") {
+            if (modelPackage.startsWith(invokerPackage + "\\")) {
+                // need to strip out invokerPackage from path
+                return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(modelPackage, invokerPackage + "\\"), srcBasePath) + File.separator + "Generated");
+            }
+            return (outputFolder + File.separator + toSrcPath(modelPackage, srcBasePath) + File.separator + "Generated");
+        } else {
+            return (outputFolder + File.separator + toSrcPath(this.getCamelizeOutputDir(modelPackage), srcBasePath) + File.separator + "Generated");
         }
-        return (outputFolder + File.separator + toSrcPath(modelPackage, srcBasePath) + File.separator + "Generated");
     }
 
     @Override
     public void processOpts() {
         super.processOpts();
 
-        if (additionalProperties.containsKey(CodegenConstants.INVOKER_PACKAGE)) {
+        if (invokerPackage != "") {
             // Update the invokerPackage for the default authPackage
             authPackage = invokerPackage + "\\" + authDirName;
             // Update interfacesPackage
             interfacesPackage = invokerPackage + "\\" + interfacesDirName;
+        } else {
+            authPackage = this.getCamelizeOutputDir(authDirName);
+            interfacesPackage = this.getCamelizeOutputDir(interfacesDirName);
         }
 
         additionalProperties.put("authPackage", authPackage + "\\" +"Generated");
@@ -223,8 +241,14 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
                 additionalProperties.put("isSlimPsr7", Boolean.TRUE);
         }
 
-        // Add apigen.php in Routes/Generated folder
-        supportingFiles.add(new SupportingFile("routes.mustache", "Routes/Generated", "apigen.php"));
+        if(invokerPackage != "") {
+            // Add apigen.php in Routes/Generated folder
+            supportingFiles.add(new SupportingFile("routes.mustache", "Routes/Generated", "apigen.php"));
+        } else {
+            // Add apigen.php in routes/Generated folder
+            supportingFiles.add(new SupportingFile("routes.mustache", "routes/Generated", "apigen.php"));
+        }
+        
         // Add .gitignore to Generated folder
         // supportingFiles.add(new SupportingFile("gitignore", "Generated", ".gitignore"));
     }
@@ -378,5 +402,11 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
      */
     public String getPsr7Implementation() {
         return this.psr7Implementation;
+    }
+
+    public String getCamelizeOutputDir(String dirPath) {
+        char c[] = dirPath.toCharArray();
+        c[0] = Character.toLowerCase(c[0]);
+        return new String(c);
     }
 }
