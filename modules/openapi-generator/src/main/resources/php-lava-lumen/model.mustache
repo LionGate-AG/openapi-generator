@@ -14,7 +14,17 @@ class {{classname}} {
 {{#deprecated}}
     /** @deprecated */
 {{/deprecated}}
-    public ${{name}};
+    protected ${{name}};
+
+    {{/vars}}
+    {{#vars}}
+    public function get{{nameInCamelCase}}(){
+        return $this->{{name}};
+    }
+
+    public function set{{nameInCamelCase}}($data){
+        $this->{{name}} = $data;
+    }
 
     {{/vars}}
 }
