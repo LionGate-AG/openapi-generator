@@ -26,8 +26,8 @@ java -jar modules/openapi-generator-cli/target/openapi-generator-cli.jar generat
     -g php-lava-lumen \
     --global-property models,modelDocs,modelTests,apis,apiTests,apiDocs,supportingFiles \
     --invoker-package Modules \
-    --api-package {API_NAME}\\Http\\Controllers \
-    --model-package {API_NAME}\\Http\\Models \
+    --api-package {API_NAME}\\Http\\Controllers\\Generated \
+    --model-package {API_NAME}\\Http\\Models\\Generated \
     --additional-properties=customPathPrefix={CUSTOM_PREFIX_FOR_ROUTES} \
     -o /path/to/output/
 ```
