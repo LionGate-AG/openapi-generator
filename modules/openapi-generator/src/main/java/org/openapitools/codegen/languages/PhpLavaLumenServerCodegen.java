@@ -161,16 +161,16 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
             if (apiPackage.startsWith(invokerPackage + "\\")) {
                 // need to strip out invokerPackage from path
     
-                return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(apiPackage, invokerPackage + "\\"), srcBasePath) + File.separator + "Generated");
+                return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(apiPackage, invokerPackage + "\\"), srcBasePath));
             }
            
-            return (outputFolder + File.separator + toSrcPath(apiPackage, srcBasePath) + File.separator + "Generated");
+            return (outputFolder + File.separator + toSrcPath(apiPackage, srcBasePath));
 
         } else {
             if(!additionalProperties.containsKey("customPackageName")) {
                 additionalProperties.put("customPackageName", "App");
             }
-            return (outputFolder + File.separator + toSrcPath(this.getCamelizeOutputDir(apiPackage), srcBasePath) + File.separator + "Generated");
+            return (outputFolder + File.separator + toSrcPath(this.getCamelizeOutputDir(apiPackage), srcBasePath));
         }
         
     }
@@ -180,11 +180,11 @@ public class PhpLavaLumenServerCodegen extends AbstractPhpCodegen {
         if(invokerPackage != "") {
             if (modelPackage.startsWith(invokerPackage + "\\")) {
                 // need to strip out invokerPackage from path
-                return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(modelPackage, invokerPackage + "\\"), srcBasePath) + File.separator + "Generated");
+                return (outputFolder + File.separator + toSrcPath(StringUtils.removeStart(modelPackage, invokerPackage + "\\"), srcBasePath));
             }
-            return (outputFolder + File.separator + toSrcPath(modelPackage, srcBasePath) + File.separator + "Generated");
+            return (outputFolder + File.separator + toSrcPath(modelPackage, srcBasePath));
         } else {
-            return (outputFolder + File.separator + toSrcPath(this.getCamelizeOutputDir(modelPackage), srcBasePath) + File.separator + "Generated");
+            return (outputFolder + File.separator + toSrcPath(this.getCamelizeOutputDir(modelPackage), srcBasePath));
         }
     }
 
