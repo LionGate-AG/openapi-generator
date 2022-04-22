@@ -50,17 +50,65 @@ namespace Org.OpenAPITools.Model
         public User(long id = default(long), string username = default(string), string firstName = default(string), string lastName = default(string), string email = default(string), string password = default(string), string phone = default(string), int userStatus = default(int), Object objectWithNoDeclaredProps = default(Object), Object objectWithNoDeclaredPropsNullable = default(Object), Object anyTypeProp = default(Object), Object anyTypePropNullable = default(Object))
         {
             this._Id = id;
+            if (this.Id != null)
+            {
+                this._flagId = true;
+            }
             this._Username = username;
+            if (this.Username != null)
+            {
+                this._flagUsername = true;
+            }
             this._FirstName = firstName;
+            if (this.FirstName != null)
+            {
+                this._flagFirstName = true;
+            }
             this._LastName = lastName;
+            if (this.LastName != null)
+            {
+                this._flagLastName = true;
+            }
             this._Email = email;
+            if (this.Email != null)
+            {
+                this._flagEmail = true;
+            }
             this._Password = password;
+            if (this.Password != null)
+            {
+                this._flagPassword = true;
+            }
             this._Phone = phone;
+            if (this.Phone != null)
+            {
+                this._flagPhone = true;
+            }
             this._UserStatus = userStatus;
+            if (this.UserStatus != null)
+            {
+                this._flagUserStatus = true;
+            }
             this._ObjectWithNoDeclaredProps = objectWithNoDeclaredProps;
+            if (this.ObjectWithNoDeclaredProps != null)
+            {
+                this._flagObjectWithNoDeclaredProps = true;
+            }
             this._ObjectWithNoDeclaredPropsNullable = objectWithNoDeclaredPropsNullable;
+            if (this.ObjectWithNoDeclaredPropsNullable != null)
+            {
+                this._flagObjectWithNoDeclaredPropsNullable = true;
+            }
             this._AnyTypeProp = anyTypeProp;
+            if (this.AnyTypeProp != null)
+            {
+                this._flagAnyTypeProp = true;
+            }
             this._AnyTypePropNullable = anyTypePropNullable;
+            if (this.AnyTypePropNullable != null)
+            {
+                this._flagAnyTypePropNullable = true;
+            }
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -69,13 +117,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public long Id
-        { 
+        {
             get{ return _Id;}
             set
             {
                 _Id = value;
                 _flagId = true;
-            } 
+            }
         }
         private long _Id;
         private bool _flagId;
@@ -93,13 +141,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "username", EmitDefaultValue = false)]
         public string Username
-        { 
+        {
             get{ return _Username;}
             set
             {
                 _Username = value;
                 _flagUsername = true;
-            } 
+            }
         }
         private string _Username;
         private bool _flagUsername;
@@ -117,13 +165,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "firstName", EmitDefaultValue = false)]
         public string FirstName
-        { 
+        {
             get{ return _FirstName;}
             set
             {
                 _FirstName = value;
                 _flagFirstName = true;
-            } 
+            }
         }
         private string _FirstName;
         private bool _flagFirstName;
@@ -141,13 +189,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "lastName", EmitDefaultValue = false)]
         public string LastName
-        { 
+        {
             get{ return _LastName;}
             set
             {
                 _LastName = value;
                 _flagLastName = true;
-            } 
+            }
         }
         private string _LastName;
         private bool _flagLastName;
@@ -165,13 +213,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "email", EmitDefaultValue = false)]
         public string Email
-        { 
+        {
             get{ return _Email;}
             set
             {
                 _Email = value;
                 _flagEmail = true;
-            } 
+            }
         }
         private string _Email;
         private bool _flagEmail;
@@ -189,13 +237,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "password", EmitDefaultValue = false)]
         public string Password
-        { 
+        {
             get{ return _Password;}
             set
             {
                 _Password = value;
                 _flagPassword = true;
-            } 
+            }
         }
         private string _Password;
         private bool _flagPassword;
@@ -213,13 +261,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "phone", EmitDefaultValue = false)]
         public string Phone
-        { 
+        {
             get{ return _Phone;}
             set
             {
                 _Phone = value;
                 _flagPhone = true;
-            } 
+            }
         }
         private string _Phone;
         private bool _flagPhone;
@@ -238,13 +286,13 @@ namespace Org.OpenAPITools.Model
         /// <value>User Status</value>
         [DataMember(Name = "userStatus", EmitDefaultValue = false)]
         public int UserStatus
-        { 
+        {
             get{ return _UserStatus;}
             set
             {
                 _UserStatus = value;
                 _flagUserStatus = true;
-            } 
+            }
         }
         private int _UserStatus;
         private bool _flagUserStatus;
@@ -263,13 +311,13 @@ namespace Org.OpenAPITools.Model
         /// <value>test code generation for objects Value must be a map of strings to values. It cannot be the &#39;null&#39; value.</value>
         [DataMember(Name = "objectWithNoDeclaredProps", EmitDefaultValue = false)]
         public Object ObjectWithNoDeclaredProps
-        { 
+        {
             get{ return _ObjectWithNoDeclaredProps;}
             set
             {
                 _ObjectWithNoDeclaredProps = value;
                 _flagObjectWithNoDeclaredProps = true;
-            } 
+            }
         }
         private Object _ObjectWithNoDeclaredProps;
         private bool _flagObjectWithNoDeclaredProps;
@@ -288,13 +336,13 @@ namespace Org.OpenAPITools.Model
         /// <value>test code generation for nullable objects. Value must be a map of strings to values or the &#39;null&#39; value.</value>
         [DataMember(Name = "objectWithNoDeclaredPropsNullable", EmitDefaultValue = true)]
         public Object ObjectWithNoDeclaredPropsNullable
-        { 
+        {
             get{ return _ObjectWithNoDeclaredPropsNullable;}
             set
             {
                 _ObjectWithNoDeclaredPropsNullable = value;
                 _flagObjectWithNoDeclaredPropsNullable = true;
-            } 
+            }
         }
         private Object _ObjectWithNoDeclaredPropsNullable;
         private bool _flagObjectWithNoDeclaredPropsNullable;
@@ -313,13 +361,13 @@ namespace Org.OpenAPITools.Model
         /// <value>test code generation for any type Here the &#39;type&#39; attribute is not specified, which means the value can be anything, including the null value, string, number, boolean, array or object. See https://github.com/OAI/OpenAPI-Specification/issues/1389</value>
         [DataMember(Name = "anyTypeProp", EmitDefaultValue = true)]
         public Object AnyTypeProp
-        { 
+        {
             get{ return _AnyTypeProp;}
             set
             {
                 _AnyTypeProp = value;
                 _flagAnyTypeProp = true;
-            } 
+            }
         }
         private Object _AnyTypeProp;
         private bool _flagAnyTypeProp;
@@ -338,13 +386,13 @@ namespace Org.OpenAPITools.Model
         /// <value>test code generation for any type Here the &#39;type&#39; attribute is not specified, which means the value can be anything, including the null value, string, number, boolean, array or object. The &#39;nullable&#39; attribute does not change the allowed values.</value>
         [DataMember(Name = "anyTypePropNullable", EmitDefaultValue = true)]
         public Object AnyTypePropNullable
-        { 
+        {
             get{ return _AnyTypePropNullable;}
             set
             {
                 _AnyTypePropNullable = value;
                 _flagAnyTypePropNullable = true;
-            } 
+            }
         }
         private Object _AnyTypePropNullable;
         private bool _flagAnyTypePropNullable;
@@ -369,7 +417,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class User {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
@@ -426,30 +474,52 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = hashCode * 59 + this.Id.GetHashCode();
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 if (this.Username != null)
-                    hashCode = hashCode * 59 + this.Username.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
+                }
                 if (this.FirstName != null)
-                    hashCode = hashCode * 59 + this.FirstName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
+                }
                 if (this.LastName != null)
-                    hashCode = hashCode * 59 + this.LastName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
+                }
                 if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
                 if (this.Password != null)
-                    hashCode = hashCode * 59 + this.Password.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
+                }
                 if (this.Phone != null)
-                    hashCode = hashCode * 59 + this.Phone.GetHashCode();
-                hashCode = hashCode * 59 + this.UserStatus.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Phone.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.UserStatus.GetHashCode();
                 if (this.ObjectWithNoDeclaredProps != null)
-                    hashCode = hashCode * 59 + this.ObjectWithNoDeclaredProps.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ObjectWithNoDeclaredProps.GetHashCode();
+                }
                 if (this.ObjectWithNoDeclaredPropsNullable != null)
-                    hashCode = hashCode * 59 + this.ObjectWithNoDeclaredPropsNullable.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ObjectWithNoDeclaredPropsNullable.GetHashCode();
+                }
                 if (this.AnyTypeProp != null)
-                    hashCode = hashCode * 59 + this.AnyTypeProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AnyTypeProp.GetHashCode();
+                }
                 if (this.AnyTypePropNullable != null)
-                    hashCode = hashCode * 59 + this.AnyTypePropNullable.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AnyTypePropNullable.GetHashCode();
+                }
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -459,7 +529,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

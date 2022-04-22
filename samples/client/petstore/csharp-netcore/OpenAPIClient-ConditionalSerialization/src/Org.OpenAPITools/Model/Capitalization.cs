@@ -44,11 +44,35 @@ namespace Org.OpenAPITools.Model
         public Capitalization(string smallCamel = default(string), string capitalCamel = default(string), string smallSnake = default(string), string capitalSnake = default(string), string sCAETHFlowPoints = default(string), string aTTNAME = default(string))
         {
             this._SmallCamel = smallCamel;
+            if (this.SmallCamel != null)
+            {
+                this._flagSmallCamel = true;
+            }
             this._CapitalCamel = capitalCamel;
+            if (this.CapitalCamel != null)
+            {
+                this._flagCapitalCamel = true;
+            }
             this._SmallSnake = smallSnake;
+            if (this.SmallSnake != null)
+            {
+                this._flagSmallSnake = true;
+            }
             this._CapitalSnake = capitalSnake;
+            if (this.CapitalSnake != null)
+            {
+                this._flagCapitalSnake = true;
+            }
             this._SCAETHFlowPoints = sCAETHFlowPoints;
+            if (this.SCAETHFlowPoints != null)
+            {
+                this._flagSCAETHFlowPoints = true;
+            }
             this._ATT_NAME = aTTNAME;
+            if (this.ATT_NAME != null)
+            {
+                this._flagATT_NAME = true;
+            }
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -57,13 +81,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "smallCamel", EmitDefaultValue = false)]
         public string SmallCamel
-        { 
+        {
             get{ return _SmallCamel;}
             set
             {
                 _SmallCamel = value;
                 _flagSmallCamel = true;
-            } 
+            }
         }
         private string _SmallCamel;
         private bool _flagSmallCamel;
@@ -81,13 +105,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "CapitalCamel", EmitDefaultValue = false)]
         public string CapitalCamel
-        { 
+        {
             get{ return _CapitalCamel;}
             set
             {
                 _CapitalCamel = value;
                 _flagCapitalCamel = true;
-            } 
+            }
         }
         private string _CapitalCamel;
         private bool _flagCapitalCamel;
@@ -105,13 +129,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "small_Snake", EmitDefaultValue = false)]
         public string SmallSnake
-        { 
+        {
             get{ return _SmallSnake;}
             set
             {
                 _SmallSnake = value;
                 _flagSmallSnake = true;
-            } 
+            }
         }
         private string _SmallSnake;
         private bool _flagSmallSnake;
@@ -129,13 +153,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "Capital_Snake", EmitDefaultValue = false)]
         public string CapitalSnake
-        { 
+        {
             get{ return _CapitalSnake;}
             set
             {
                 _CapitalSnake = value;
                 _flagCapitalSnake = true;
-            } 
+            }
         }
         private string _CapitalSnake;
         private bool _flagCapitalSnake;
@@ -153,13 +177,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "SCA_ETH_Flow_Points", EmitDefaultValue = false)]
         public string SCAETHFlowPoints
-        { 
+        {
             get{ return _SCAETHFlowPoints;}
             set
             {
                 _SCAETHFlowPoints = value;
                 _flagSCAETHFlowPoints = true;
-            } 
+            }
         }
         private string _SCAETHFlowPoints;
         private bool _flagSCAETHFlowPoints;
@@ -178,13 +202,13 @@ namespace Org.OpenAPITools.Model
         /// <value>Name of the pet </value>
         [DataMember(Name = "ATT_NAME", EmitDefaultValue = false)]
         public string ATT_NAME
-        { 
+        {
             get{ return _ATT_NAME;}
             set
             {
                 _ATT_NAME = value;
                 _flagATT_NAME = true;
-            } 
+            }
         }
         private string _ATT_NAME;
         private bool _flagATT_NAME;
@@ -209,7 +233,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Capitalization {\n");
             sb.Append("  SmallCamel: ").Append(SmallCamel).Append("\n");
             sb.Append("  CapitalCamel: ").Append(CapitalCamel).Append("\n");
@@ -261,19 +285,33 @@ namespace Org.OpenAPITools.Model
             {
                 int hashCode = 41;
                 if (this.SmallCamel != null)
-                    hashCode = hashCode * 59 + this.SmallCamel.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SmallCamel.GetHashCode();
+                }
                 if (this.CapitalCamel != null)
-                    hashCode = hashCode * 59 + this.CapitalCamel.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CapitalCamel.GetHashCode();
+                }
                 if (this.SmallSnake != null)
-                    hashCode = hashCode * 59 + this.SmallSnake.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SmallSnake.GetHashCode();
+                }
                 if (this.CapitalSnake != null)
-                    hashCode = hashCode * 59 + this.CapitalSnake.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.CapitalSnake.GetHashCode();
+                }
                 if (this.SCAETHFlowPoints != null)
-                    hashCode = hashCode * 59 + this.SCAETHFlowPoints.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.SCAETHFlowPoints.GetHashCode();
+                }
                 if (this.ATT_NAME != null)
-                    hashCode = hashCode * 59 + this.ATT_NAME.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ATT_NAME.GetHashCode();
+                }
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -283,7 +321,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

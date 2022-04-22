@@ -25,7 +25,9 @@ Method | HTTP request | Description
 
 Add a new pet to the store
 
-### Example 
+
+
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: petstore_auth
@@ -34,7 +36,7 @@ import 'package:openapi/api.dart';
 final api = Openapi().getPetApi();
 final Pet pet = ; // Pet | Pet object that needs to be added to the store
 
-try { 
+try {
     api.addPet(pet);
 } catch on DioError (e) {
     print('Exception when calling PetApi->addPet: $e\n');
@@ -67,7 +69,9 @@ void (empty response body)
 
 Deletes a pet
 
-### Example 
+
+
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: petstore_auth
@@ -77,7 +81,7 @@ final api = Openapi().getPetApi();
 final int petId = 789; // int | Pet id to delete
 final String apiKey = apiKey_example; // String | 
 
-try { 
+try {
     api.deletePet(petId, apiKey);
 } catch on DioError (e) {
     print('Exception when calling PetApi->deletePet: $e\n');
@@ -113,7 +117,7 @@ Finds Pets by status
 
 Multiple status values can be provided with comma separated strings
 
-### Example 
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: petstore_auth
@@ -122,7 +126,7 @@ import 'package:openapi/api.dart';
 final api = Openapi().getPetApi();
 final BuiltList<String> status = ; // BuiltList<String> | Status values that need to be considered for filter
 
-try { 
+try {
     final response = api.findPetsByStatus(status);
     print(response);
 } catch on DioError (e) {
@@ -158,7 +162,7 @@ Finds Pets by tags
 
 Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
 
-### Example 
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: petstore_auth
@@ -167,7 +171,7 @@ import 'package:openapi/api.dart';
 final api = Openapi().getPetApi();
 final BuiltSet<String> tags = ; // BuiltSet<String> | Tags to filter by
 
-try { 
+try {
     final response = api.findPetsByTags(tags);
     print(response);
 } catch on DioError (e) {
@@ -203,7 +207,7 @@ Find pet by ID
 
 Returns a single pet
 
-### Example 
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure API key authorization: api_key
@@ -214,7 +218,7 @@ import 'package:openapi/api.dart';
 final api = Openapi().getPetApi();
 final int petId = 789; // int | ID of pet to return
 
-try { 
+try {
     final response = api.getPetById(petId);
     print(response);
 } catch on DioError (e) {
@@ -248,7 +252,9 @@ Name | Type | Description  | Notes
 
 Update an existing pet
 
-### Example 
+
+
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: petstore_auth
@@ -257,7 +263,7 @@ import 'package:openapi/api.dart';
 final api = Openapi().getPetApi();
 final Pet pet = ; // Pet | Pet object that needs to be added to the store
 
-try { 
+try {
     api.updatePet(pet);
 } catch on DioError (e) {
     print('Exception when calling PetApi->updatePet: $e\n');
@@ -290,7 +296,9 @@ void (empty response body)
 
 Updates a pet in the store with form data
 
-### Example 
+
+
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: petstore_auth
@@ -301,7 +309,7 @@ final int petId = 789; // int | ID of pet that needs to be updated
 final String name = name_example; // String | Updated name of the pet
 final String status = status_example; // String | Updated status of the pet
 
-try { 
+try {
     api.updatePetWithForm(petId, name, status);
 } catch on DioError (e) {
     print('Exception when calling PetApi->updatePetWithForm: $e\n');
@@ -336,7 +344,9 @@ void (empty response body)
 
 uploads an image
 
-### Example 
+
+
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: petstore_auth
@@ -347,7 +357,7 @@ final int petId = 789; // int | ID of pet to update
 final String additionalMetadata = additionalMetadata_example; // String | Additional data to pass to server
 final MultipartFile file = BINARY_DATA_HERE; // MultipartFile | file to upload
 
-try { 
+try {
     final response = api.uploadFile(petId, additionalMetadata, file);
     print(response);
 } catch on DioError (e) {
@@ -383,7 +393,9 @@ Name | Type | Description  | Notes
 
 uploads an image (required)
 
-### Example 
+
+
+### Example
 ```dart
 import 'package:openapi/api.dart';
 // TODO Configure OAuth2 access token for authorization: petstore_auth
@@ -394,7 +406,7 @@ final int petId = 789; // int | ID of pet to update
 final MultipartFile requiredFile = BINARY_DATA_HERE; // MultipartFile | file to upload
 final String additionalMetadata = additionalMetadata_example; // String | Additional data to pass to server
 
-try { 
+try {
     final response = api.uploadFileWithRequiredFile(petId, requiredFile, additionalMetadata);
     print(response);
 } catch on DioError (e) {

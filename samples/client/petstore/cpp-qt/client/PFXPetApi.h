@@ -15,6 +15,7 @@
 #include "PFXHelpers.h"
 #include "PFXHttpRequest.h"
 #include "PFXServerConfiguration.h"
+#include "PFXOauth.h"
 
 #include "PFXApiResponse.h"
 #include "PFXHttpFileElement.h"
@@ -53,14 +54,14 @@ public:
     void enableRequestCompression();
     void enableResponseCompression();
     void abortRequests();
-    QString getParamStylePrefix(QString style);
-    QString getParamStyleSuffix(QString style);
-    QString getParamStyleDelimiter(QString style, QString name, bool isExplode);
+    QString getParamStylePrefix(const QString &style);
+    QString getParamStyleSuffix(const QString &style);
+    QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
     /**
-    * @param[in]  body PFXPet [required]
+    * @param[in]  pfx_pet PFXPet [required]
     */
-    void addPet(const PFXPet &body);
+    void addPet(const PFXPet &pfx_pet);
 
     /**
     * @param[in]  pet_id qint64 [required]
@@ -84,9 +85,9 @@ public:
     void getPetById(const qint64 &pet_id);
 
     /**
-    * @param[in]  body PFXPet [required]
+    * @param[in]  pfx_pet PFXPet [required]
     */
-    void updatePet(const PFXPet &body);
+    void updatePet(const PFXPet &pfx_pet);
 
     /**
     * @param[in]  pet_id qint64 [required]
@@ -113,9 +114,17 @@ private:
     int _timeOut;
     QString _workingDirectory;
     QNetworkAccessManager* _manager;
-    QMap<QString, QString> defaultHeaders;
-    bool isResponseCompressionEnabled;
-    bool isRequestCompressionEnabled;
+    QMap<QString, QString> _defaultHeaders;
+    bool _isResponseCompressionEnabled;
+    bool _isRequestCompressionEnabled;
+    PFXHttpRequestInput _latestInput;
+    PFXHttpRequestWorker *_latestWorker;
+    QStringList _latestScope;
+    OauthCode _authFlow;
+    OauthImplicit _implicitFlow;
+    OauthCredentials _credentialFlow;
+    OauthPassword _passwordFlow;
+    int _OauthMethod = 0;
 
     void addPetCallback(PFXHttpRequestWorker *worker);
     void deletePetCallback(PFXHttpRequestWorker *worker);
@@ -166,6 +175,10 @@ signals:
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
+
+public slots:
+    void tokenAvailable();
+    
 };
 
 } // namespace test_namespace

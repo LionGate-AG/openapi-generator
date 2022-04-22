@@ -58,7 +58,8 @@ abstract class EnumTest implements Built<EnumTest, EnumTestBuilder> {
 
     EnumTest._();
 
-    static void _initializeBuilder(EnumTestBuilder b) => b;
+    @BuiltValueHook(initializeBuilder: true)
+    static void _defaults(EnumTestBuilder b) => b;
 
     factory EnumTest([void updates(EnumTestBuilder b)]) = _$EnumTest;
 
@@ -103,7 +104,7 @@ class _$EnumTestSerializer implements StructuredSerializer<EnumTest> {
             result
                 ..add(r'outerEnum')
                 ..add(serializers.serialize(object.outerEnum,
-                    specifiedType: const FullType(OuterEnum)));
+                    specifiedType: const FullType.nullable(OuterEnum)));
         }
         if (object.outerEnumInteger != null) {
             result
@@ -136,38 +137,48 @@ class _$EnumTestSerializer implements StructuredSerializer<EnumTest> {
             final key = iterator.current as String;
             iterator.moveNext();
             final Object? value = iterator.current;
+            
             switch (key) {
                 case r'enum_string':
-                    result.enumString = serializers.deserialize(value,
+                    final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(EnumTestEnumStringEnum)) as EnumTestEnumStringEnum;
+                    result.enumString = valueDes;
                     break;
                 case r'enum_string_required':
-                    result.enumStringRequired = serializers.deserialize(value,
+                    final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(EnumTestEnumStringRequiredEnum)) as EnumTestEnumStringRequiredEnum;
+                    result.enumStringRequired = valueDes;
                     break;
                 case r'enum_integer':
-                    result.enumInteger = serializers.deserialize(value,
+                    final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(EnumTestEnumIntegerEnum)) as EnumTestEnumIntegerEnum;
+                    result.enumInteger = valueDes;
                     break;
                 case r'enum_number':
-                    result.enumNumber = serializers.deserialize(value,
+                    final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(EnumTestEnumNumberEnum)) as EnumTestEnumNumberEnum;
+                    result.enumNumber = valueDes;
                     break;
                 case r'outerEnum':
-                    result.outerEnum = serializers.deserialize(value,
-                        specifiedType: const FullType(OuterEnum)) as OuterEnum;
+                    final valueDes = serializers.deserialize(value,
+                        specifiedType: const FullType.nullable(OuterEnum)) as OuterEnum?;
+                    if (valueDes == null) continue;
+                    result.outerEnum = valueDes;
                     break;
                 case r'outerEnumInteger':
-                    result.outerEnumInteger = serializers.deserialize(value,
+                    final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(OuterEnumInteger)) as OuterEnumInteger;
+                    result.outerEnumInteger = valueDes;
                     break;
                 case r'outerEnumDefaultValue':
-                    result.outerEnumDefaultValue = serializers.deserialize(value,
+                    final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(OuterEnumDefaultValue)) as OuterEnumDefaultValue;
+                    result.outerEnumDefaultValue = valueDes;
                     break;
                 case r'outerEnumIntegerDefaultValue':
-                    result.outerEnumIntegerDefaultValue = serializers.deserialize(value,
+                    final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(OuterEnumIntegerDefaultValue)) as OuterEnumIntegerDefaultValue;
+                    result.outerEnumIntegerDefaultValue = valueDes;
                     break;
             }
         }
@@ -183,6 +194,8 @@ class EnumTestEnumStringEnum extends EnumClass {
   static const EnumTestEnumStringEnum lower = _$enumTestEnumStringEnum_lower;
   @BuiltValueEnumConst(wireName: r'')
   static const EnumTestEnumStringEnum empty = _$enumTestEnumStringEnum_empty;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const EnumTestEnumStringEnum unknownDefaultOpenApi = _$enumTestEnumStringEnum_unknownDefaultOpenApi;
 
   static Serializer<EnumTestEnumStringEnum> get serializer => _$enumTestEnumStringEnumSerializer;
 
@@ -200,6 +213,8 @@ class EnumTestEnumStringRequiredEnum extends EnumClass {
   static const EnumTestEnumStringRequiredEnum lower = _$enumTestEnumStringRequiredEnum_lower;
   @BuiltValueEnumConst(wireName: r'')
   static const EnumTestEnumStringRequiredEnum empty = _$enumTestEnumStringRequiredEnum_empty;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const EnumTestEnumStringRequiredEnum unknownDefaultOpenApi = _$enumTestEnumStringRequiredEnum_unknownDefaultOpenApi;
 
   static Serializer<EnumTestEnumStringRequiredEnum> get serializer => _$enumTestEnumStringRequiredEnumSerializer;
 
@@ -215,6 +230,8 @@ class EnumTestEnumIntegerEnum extends EnumClass {
   static const EnumTestEnumIntegerEnum number1 = _$enumTestEnumIntegerEnum_number1;
   @BuiltValueEnumConst(wireNumber: -1)
   static const EnumTestEnumIntegerEnum numberNegative1 = _$enumTestEnumIntegerEnum_numberNegative1;
+  @BuiltValueEnumConst(wireNumber: 11184809, fallback: true)
+  static const EnumTestEnumIntegerEnum unknownDefaultOpenApi = _$enumTestEnumIntegerEnum_unknownDefaultOpenApi;
 
   static Serializer<EnumTestEnumIntegerEnum> get serializer => _$enumTestEnumIntegerEnumSerializer;
 
@@ -230,6 +247,8 @@ class EnumTestEnumNumberEnum extends EnumClass {
   static const EnumTestEnumNumberEnum number1Period1 = _$enumTestEnumNumberEnum_number1Period1;
   @BuiltValueEnumConst(wireName: r'-1.2')
   static const EnumTestEnumNumberEnum numberNegative1Period2 = _$enumTestEnumNumberEnum_numberNegative1Period2;
+  @BuiltValueEnumConst(wireName: r'11184809', fallback: true)
+  static const EnumTestEnumNumberEnum unknownDefaultOpenApi = _$enumTestEnumNumberEnum_unknownDefaultOpenApi;
 
   static Serializer<EnumTestEnumNumberEnum> get serializer => _$enumTestEnumNumberEnumSerializer;
 

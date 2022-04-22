@@ -64,10 +64,10 @@ namespace Org.OpenAPITools.Model
         /// Order Status
         /// </summary>
         /// <value>Order Status</value>
-        
+
         [DataMember(Name = "status", EmitDefaultValue = false)]
-        public StatusEnum? Status 
-        { 
+        public StatusEnum? Status
+        {
             get{ return _Status;}
             set
             {
@@ -98,11 +98,30 @@ namespace Org.OpenAPITools.Model
         public Order(long id = default(long), long petId = default(long), int quantity = default(int), DateTime shipDate = default(DateTime), StatusEnum? status = default(StatusEnum?), bool complete = false)
         {
             this._Id = id;
+            if (this.Id != null)
+            {
+                this._flagId = true;
+            }
             this._PetId = petId;
+            if (this.PetId != null)
+            {
+                this._flagPetId = true;
+            }
             this._Quantity = quantity;
+            if (this.Quantity != null)
+            {
+                this._flagQuantity = true;
+            }
             this._ShipDate = shipDate;
+            if (this.ShipDate != null)
+            {
+                this._flagShipDate = true;
+            }
             this._Status = status;
-            this.Complete = complete;
+            if (this.Status != null)
+            {
+                this._flagStatus = true;
+            }
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -111,13 +130,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public long Id
-        { 
+        {
             get{ return _Id;}
             set
             {
                 _Id = value;
                 _flagId = true;
-            } 
+            }
         }
         private long _Id;
         private bool _flagId;
@@ -135,13 +154,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "petId", EmitDefaultValue = false)]
         public long PetId
-        { 
+        {
             get{ return _PetId;}
             set
             {
                 _PetId = value;
                 _flagPetId = true;
-            } 
+            }
         }
         private long _PetId;
         private bool _flagPetId;
@@ -159,13 +178,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "quantity", EmitDefaultValue = false)]
         public int Quantity
-        { 
+        {
             get{ return _Quantity;}
             set
             {
                 _Quantity = value;
                 _flagQuantity = true;
-            } 
+            }
         }
         private int _Quantity;
         private bool _flagQuantity;
@@ -183,13 +202,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "shipDate", EmitDefaultValue = false)]
         public DateTime ShipDate
-        { 
+        {
             get{ return _ShipDate;}
             set
             {
                 _ShipDate = value;
                 _flagShipDate = true;
-            } 
+            }
         }
         private DateTime _ShipDate;
         private bool _flagShipDate;
@@ -207,13 +226,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "complete", EmitDefaultValue = true)]
         public bool Complete
-        { 
+        {
             get{ return _Complete;}
             set
             {
                 _Complete = value;
                 _flagComplete = true;
-            } 
+            }
         }
         private bool _Complete;
         private bool _flagComplete;
@@ -238,7 +257,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Order {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PetId: ").Append(PetId).Append("\n");
@@ -289,15 +308,19 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = hashCode * 59 + this.Id.GetHashCode();
-                hashCode = hashCode * 59 + this.PetId.GetHashCode();
-                hashCode = hashCode * 59 + this.Quantity.GetHashCode();
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                hashCode = (hashCode * 59) + this.PetId.GetHashCode();
+                hashCode = (hashCode * 59) + this.Quantity.GetHashCode();
                 if (this.ShipDate != null)
-                    hashCode = hashCode * 59 + this.ShipDate.GetHashCode();
-                hashCode = hashCode * 59 + this.Status.GetHashCode();
-                hashCode = hashCode * 59 + this.Complete.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShipDate.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                hashCode = (hashCode * 59) + this.Complete.GetHashCode();
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -307,7 +330,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

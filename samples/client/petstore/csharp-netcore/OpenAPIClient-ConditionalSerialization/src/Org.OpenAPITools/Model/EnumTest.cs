@@ -62,10 +62,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets EnumString
         /// </summary>
-        
+
         [DataMember(Name = "enum_string", EmitDefaultValue = false)]
-        public EnumStringEnum? EnumString 
-        { 
+        public EnumStringEnum? EnumString
+        {
             get{ return _EnumString;}
             set
             {
@@ -114,10 +114,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets EnumStringRequired
         /// </summary>
-        
+
         [DataMember(Name = "enum_string_required", IsRequired = true, EmitDefaultValue = false)]
-        public EnumStringRequiredEnum EnumStringRequired 
-        { 
+        public EnumStringRequiredEnum EnumStringRequired
+        {
             get{ return _EnumStringRequired;}
             set
             {
@@ -157,10 +157,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets EnumInteger
         /// </summary>
-        
+
         [DataMember(Name = "enum_integer", EmitDefaultValue = false)]
-        public EnumIntegerEnum? EnumInteger 
-        { 
+        public EnumIntegerEnum? EnumInteger
+        {
             get{ return _EnumInteger;}
             set
             {
@@ -200,10 +200,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets EnumIntegerOnly
         /// </summary>
-        
+
         [DataMember(Name = "enum_integer_only", EmitDefaultValue = false)]
-        public EnumIntegerOnlyEnum? EnumIntegerOnly 
-        { 
+        public EnumIntegerOnlyEnum? EnumIntegerOnly
+        {
             get{ return _EnumIntegerOnly;}
             set
             {
@@ -246,10 +246,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets EnumNumber
         /// </summary>
-        
+
         [DataMember(Name = "enum_number", EmitDefaultValue = false)]
-        public EnumNumberEnum? EnumNumber 
-        { 
+        public EnumNumberEnum? EnumNumber
+        {
             get{ return _EnumNumber;}
             set
             {
@@ -272,10 +272,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets OuterEnum
         /// </summary>
-        
+
         [DataMember(Name = "outerEnum", EmitDefaultValue = true)]
-        public OuterEnum? OuterEnum 
-        { 
+        public OuterEnum? OuterEnum
+        {
             get{ return _OuterEnum;}
             set
             {
@@ -298,10 +298,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets OuterEnumInteger
         /// </summary>
-        
+
         [DataMember(Name = "outerEnumInteger", EmitDefaultValue = false)]
-        public OuterEnumInteger? OuterEnumInteger 
-        { 
+        public OuterEnumInteger? OuterEnumInteger
+        {
             get{ return _OuterEnumInteger;}
             set
             {
@@ -324,10 +324,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets OuterEnumDefaultValue
         /// </summary>
-        
+
         [DataMember(Name = "outerEnumDefaultValue", EmitDefaultValue = false)]
-        public OuterEnumDefaultValue? OuterEnumDefaultValue 
-        { 
+        public OuterEnumDefaultValue? OuterEnumDefaultValue
+        {
             get{ return _OuterEnumDefaultValue;}
             set
             {
@@ -350,10 +350,10 @@ namespace Org.OpenAPITools.Model
         /// <summary>
         /// Gets or Sets OuterEnumIntegerDefaultValue
         /// </summary>
-        
+
         [DataMember(Name = "outerEnumIntegerDefaultValue", EmitDefaultValue = false)]
-        public OuterEnumIntegerDefaultValue? OuterEnumIntegerDefaultValue 
-        { 
+        public OuterEnumIntegerDefaultValue? OuterEnumIntegerDefaultValue
+        {
             get{ return _OuterEnumIntegerDefaultValue;}
             set
             {
@@ -396,13 +396,45 @@ namespace Org.OpenAPITools.Model
         {
             this._EnumStringRequired = enumStringRequired;
             this._EnumString = enumString;
+            if (this.EnumString != null)
+            {
+                this._flagEnumString = true;
+            }
             this._EnumInteger = enumInteger;
+            if (this.EnumInteger != null)
+            {
+                this._flagEnumInteger = true;
+            }
             this._EnumIntegerOnly = enumIntegerOnly;
+            if (this.EnumIntegerOnly != null)
+            {
+                this._flagEnumIntegerOnly = true;
+            }
             this._EnumNumber = enumNumber;
+            if (this.EnumNumber != null)
+            {
+                this._flagEnumNumber = true;
+            }
             this._OuterEnum = outerEnum;
+            if (this.OuterEnum != null)
+            {
+                this._flagOuterEnum = true;
+            }
             this._OuterEnumInteger = outerEnumInteger;
+            if (this.OuterEnumInteger != null)
+            {
+                this._flagOuterEnumInteger = true;
+            }
             this._OuterEnumDefaultValue = outerEnumDefaultValue;
+            if (this.OuterEnumDefaultValue != null)
+            {
+                this._flagOuterEnumDefaultValue = true;
+            }
             this._OuterEnumIntegerDefaultValue = outerEnumIntegerDefaultValue;
+            if (this.OuterEnumIntegerDefaultValue != null)
+            {
+                this._flagOuterEnumIntegerDefaultValue = true;
+            }
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -418,7 +450,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class EnumTest {\n");
             sb.Append("  EnumString: ").Append(EnumString).Append("\n");
             sb.Append("  EnumStringRequired: ").Append(EnumStringRequired).Append("\n");
@@ -472,17 +504,19 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = hashCode * 59 + this.EnumString.GetHashCode();
-                hashCode = hashCode * 59 + this.EnumStringRequired.GetHashCode();
-                hashCode = hashCode * 59 + this.EnumInteger.GetHashCode();
-                hashCode = hashCode * 59 + this.EnumIntegerOnly.GetHashCode();
-                hashCode = hashCode * 59 + this.EnumNumber.GetHashCode();
-                hashCode = hashCode * 59 + this.OuterEnum.GetHashCode();
-                hashCode = hashCode * 59 + this.OuterEnumInteger.GetHashCode();
-                hashCode = hashCode * 59 + this.OuterEnumDefaultValue.GetHashCode();
-                hashCode = hashCode * 59 + this.OuterEnumIntegerDefaultValue.GetHashCode();
+                hashCode = (hashCode * 59) + this.EnumString.GetHashCode();
+                hashCode = (hashCode * 59) + this.EnumStringRequired.GetHashCode();
+                hashCode = (hashCode * 59) + this.EnumInteger.GetHashCode();
+                hashCode = (hashCode * 59) + this.EnumIntegerOnly.GetHashCode();
+                hashCode = (hashCode * 59) + this.EnumNumber.GetHashCode();
+                hashCode = (hashCode * 59) + this.OuterEnum.GetHashCode();
+                hashCode = (hashCode * 59) + this.OuterEnumInteger.GetHashCode();
+                hashCode = (hashCode * 59) + this.OuterEnumDefaultValue.GetHashCode();
+                hashCode = (hashCode * 59) + this.OuterEnumIntegerDefaultValue.GetHashCode();
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -492,7 +526,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

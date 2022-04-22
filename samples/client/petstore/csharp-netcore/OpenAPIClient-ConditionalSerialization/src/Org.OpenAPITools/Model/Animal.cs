@@ -52,9 +52,11 @@ namespace Org.OpenAPITools.Model
         public Animal(string className = default(string), string color = "red")
         {
             // to ensure "className" is required (not null)
-            this._ClassName = className ?? throw new ArgumentNullException("className is a required property for Animal and cannot be null");
-            // use default value if no "color" provided
-            this.Color = color ?? "red";
+            if (className == null)
+            {
+                throw new ArgumentNullException("className is a required property for Animal and cannot be null");
+            }
+            this._ClassName = className;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -63,13 +65,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "className", IsRequired = true, EmitDefaultValue = false)]
         public string ClassName
-        { 
+        {
             get{ return _ClassName;}
             set
             {
                 _ClassName = value;
                 _flagClassName = true;
-            } 
+            }
         }
         private string _ClassName;
         private bool _flagClassName;
@@ -87,13 +89,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "color", EmitDefaultValue = false)]
         public string Color
-        { 
+        {
             get{ return _Color;}
             set
             {
                 _Color = value;
                 _flagColor = true;
-            } 
+            }
         }
         private string _Color;
         private bool _flagColor;
@@ -118,7 +120,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class Animal {\n");
             sb.Append("  ClassName: ").Append(ClassName).Append("\n");
             sb.Append("  Color: ").Append(Color).Append("\n");
@@ -166,11 +168,17 @@ namespace Org.OpenAPITools.Model
             {
                 int hashCode = 41;
                 if (this.ClassName != null)
-                    hashCode = hashCode * 59 + this.ClassName.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ClassName.GetHashCode();
+                }
                 if (this.Color != null)
-                    hashCode = hashCode * 59 + this.Color.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Color.GetHashCode();
+                }
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -180,7 +188,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }

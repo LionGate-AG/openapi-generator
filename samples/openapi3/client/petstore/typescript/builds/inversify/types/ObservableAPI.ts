@@ -32,6 +32,7 @@ export class ObservablePetApi {
     }
 
     /**
+     * 
      * Add a new pet to the store
      * @param pet Pet object that needs to be added to the store
      */
@@ -53,8 +54,9 @@ export class ObservablePetApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.addPet(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Deletes a pet
      * @param petId Pet id to delete
      * @param apiKey 
@@ -77,7 +79,7 @@ export class ObservablePetApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deletePet(rsp)));
             }));
     }
- 
+
     /**
      * Multiple status values can be provided with comma separated strings
      * Finds Pets by status
@@ -101,7 +103,7 @@ export class ObservablePetApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.findPetsByStatus(rsp)));
             }));
     }
- 
+
     /**
      * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
      * Finds Pets by tags
@@ -125,7 +127,7 @@ export class ObservablePetApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.findPetsByTags(rsp)));
             }));
     }
- 
+
     /**
      * Returns a single pet
      * Find pet by ID
@@ -149,8 +151,9 @@ export class ObservablePetApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getPetById(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Update an existing pet
      * @param pet Pet object that needs to be added to the store
      */
@@ -172,8 +175,9 @@ export class ObservablePetApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updatePet(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Updates a pet in the store with form data
      * @param petId ID of pet that needs to be updated
      * @param name Updated name of the pet
@@ -197,8 +201,9 @@ export class ObservablePetApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updatePetWithForm(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * uploads an image
      * @param petId ID of pet to update
      * @param additionalMetadata Additional data to pass to server
@@ -222,7 +227,7 @@ export class ObservablePetApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.uploadFile(rsp)));
             }));
     }
- 
+
 }
 
 import { StoreApiRequestFactory, StoreApiResponseProcessor} from "../apis/StoreApi";
@@ -267,7 +272,7 @@ export class ObservableStoreApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteOrder(rsp)));
             }));
     }
- 
+
     /**
      * Returns a map of status codes to quantities
      * Returns pet inventories by status
@@ -290,7 +295,7 @@ export class ObservableStoreApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getInventory(rsp)));
             }));
     }
- 
+
     /**
      * For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions
      * Find purchase order by ID
@@ -314,8 +319,9 @@ export class ObservableStoreApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getOrderById(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Place an order for a pet
      * @param order order placed for purchasing the pet
      */
@@ -337,7 +343,7 @@ export class ObservableStoreApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.placeOrder(rsp)));
             }));
     }
- 
+
 }
 
 import { UserApiRequestFactory, UserApiResponseProcessor} from "../apis/UserApi";
@@ -382,8 +388,9 @@ export class ObservableUserApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createUser(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Creates list of users with given input array
      * @param user List of user object
      */
@@ -405,8 +412,9 @@ export class ObservableUserApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createUsersWithArrayInput(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Creates list of users with given input array
      * @param user List of user object
      */
@@ -428,7 +436,7 @@ export class ObservableUserApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createUsersWithListInput(rsp)));
             }));
     }
- 
+
     /**
      * This can only be done by the logged in user.
      * Delete user
@@ -452,8 +460,9 @@ export class ObservableUserApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteUser(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Get user by user name
      * @param username The name that needs to be fetched. Use user1 for testing.
      */
@@ -475,8 +484,9 @@ export class ObservableUserApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getUserByName(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Logs user into the system
      * @param username The user name for login
      * @param password The password for login in clear text
@@ -499,8 +509,9 @@ export class ObservableUserApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.loginUser(rsp)));
             }));
     }
- 
+
     /**
+     * 
      * Logs out current logged in user session
      */
     public logoutUser(_options?: Configuration): Observable<void> {
@@ -521,7 +532,7 @@ export class ObservableUserApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.logoutUser(rsp)));
             }));
     }
- 
+
     /**
      * This can only be done by the logged in user.
      * Updated user
@@ -546,5 +557,5 @@ export class ObservableUserApi {
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updateUser(rsp)));
             }));
     }
- 
+
 }

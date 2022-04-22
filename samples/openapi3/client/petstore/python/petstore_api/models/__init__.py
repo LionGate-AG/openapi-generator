@@ -48,10 +48,12 @@ from petstore_api.model.fake_post_inline_additional_properties_payload_array_dat
 from petstore_api.model.file import File
 from petstore_api.model.file_schema_test_class import FileSchemaTestClass
 from petstore_api.model.foo import Foo
+from petstore_api.model.foo_object import FooObject
 from petstore_api.model.format_test import FormatTest
 from petstore_api.model.fruit import Fruit
 from petstore_api.model.fruit_req import FruitReq
 from petstore_api.model.gm_fruit import GmFruit
+from petstore_api.model.gm_fruit_no_properties import GmFruitNoProperties
 from petstore_api.model.grandparent_animal import GrandparentAnimal
 from petstore_api.model.has_only_read_only import HasOnlyReadOnly
 from petstore_api.model.health_check_result import HealthCheckResult
@@ -62,6 +64,7 @@ from petstore_api.model.integer_enum import IntegerEnum
 from petstore_api.model.integer_enum_one_value import IntegerEnumOneValue
 from petstore_api.model.integer_enum_with_default_value import IntegerEnumWithDefaultValue
 from petstore_api.model.isosceles_triangle import IsoscelesTriangle
+from petstore_api.model.legs import Legs
 from petstore_api.model.list import List
 from petstore_api.model.mammal import Mammal
 from petstore_api.model.map_test import MapTest

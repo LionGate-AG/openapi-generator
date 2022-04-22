@@ -50,17 +50,65 @@ namespace Org.OpenAPITools.Model
         public NullableClass(int? integerProp = default(int?), decimal? numberProp = default(decimal?), bool? booleanProp = default(bool?), string stringProp = default(string), DateTime? dateProp = default(DateTime?), DateTime? datetimeProp = default(DateTime?), List<Object> arrayNullableProp = default(List<Object>), List<Object> arrayAndItemsNullableProp = default(List<Object>), List<Object> arrayItemsNullable = default(List<Object>), Dictionary<string, Object> objectNullableProp = default(Dictionary<string, Object>), Dictionary<string, Object> objectAndItemsNullableProp = default(Dictionary<string, Object>), Dictionary<string, Object> objectItemsNullable = default(Dictionary<string, Object>)) : base()
         {
             this._IntegerProp = integerProp;
+            if (this.IntegerProp != null)
+            {
+                this._flagIntegerProp = true;
+            }
             this._NumberProp = numberProp;
+            if (this.NumberProp != null)
+            {
+                this._flagNumberProp = true;
+            }
             this._BooleanProp = booleanProp;
+            if (this.BooleanProp != null)
+            {
+                this._flagBooleanProp = true;
+            }
             this._StringProp = stringProp;
+            if (this.StringProp != null)
+            {
+                this._flagStringProp = true;
+            }
             this._DateProp = dateProp;
+            if (this.DateProp != null)
+            {
+                this._flagDateProp = true;
+            }
             this._DatetimeProp = datetimeProp;
+            if (this.DatetimeProp != null)
+            {
+                this._flagDatetimeProp = true;
+            }
             this._ArrayNullableProp = arrayNullableProp;
+            if (this.ArrayNullableProp != null)
+            {
+                this._flagArrayNullableProp = true;
+            }
             this._ArrayAndItemsNullableProp = arrayAndItemsNullableProp;
+            if (this.ArrayAndItemsNullableProp != null)
+            {
+                this._flagArrayAndItemsNullableProp = true;
+            }
             this._ArrayItemsNullable = arrayItemsNullable;
+            if (this.ArrayItemsNullable != null)
+            {
+                this._flagArrayItemsNullable = true;
+            }
             this._ObjectNullableProp = objectNullableProp;
+            if (this.ObjectNullableProp != null)
+            {
+                this._flagObjectNullableProp = true;
+            }
             this._ObjectAndItemsNullableProp = objectAndItemsNullableProp;
+            if (this.ObjectAndItemsNullableProp != null)
+            {
+                this._flagObjectAndItemsNullableProp = true;
+            }
             this._ObjectItemsNullable = objectItemsNullable;
+            if (this.ObjectItemsNullable != null)
+            {
+                this._flagObjectItemsNullable = true;
+            }
         }
 
         /// <summary>
@@ -68,13 +116,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "integer_prop", EmitDefaultValue = true)]
         public int? IntegerProp
-        { 
+        {
             get{ return _IntegerProp;}
             set
             {
                 _IntegerProp = value;
                 _flagIntegerProp = true;
-            } 
+            }
         }
         private int? _IntegerProp;
         private bool _flagIntegerProp;
@@ -92,13 +140,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "number_prop", EmitDefaultValue = true)]
         public decimal? NumberProp
-        { 
+        {
             get{ return _NumberProp;}
             set
             {
                 _NumberProp = value;
                 _flagNumberProp = true;
-            } 
+            }
         }
         private decimal? _NumberProp;
         private bool _flagNumberProp;
@@ -116,13 +164,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "boolean_prop", EmitDefaultValue = true)]
         public bool? BooleanProp
-        { 
+        {
             get{ return _BooleanProp;}
             set
             {
                 _BooleanProp = value;
                 _flagBooleanProp = true;
-            } 
+            }
         }
         private bool? _BooleanProp;
         private bool _flagBooleanProp;
@@ -140,13 +188,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "string_prop", EmitDefaultValue = true)]
         public string StringProp
-        { 
+        {
             get{ return _StringProp;}
             set
             {
                 _StringProp = value;
                 _flagStringProp = true;
-            } 
+            }
         }
         private string _StringProp;
         private bool _flagStringProp;
@@ -165,13 +213,13 @@ namespace Org.OpenAPITools.Model
         [JsonConverter(typeof(OpenAPIDateConverter))]
         [DataMember(Name = "date_prop", EmitDefaultValue = true)]
         public DateTime? DateProp
-        { 
+        {
             get{ return _DateProp;}
             set
             {
                 _DateProp = value;
                 _flagDateProp = true;
-            } 
+            }
         }
         private DateTime? _DateProp;
         private bool _flagDateProp;
@@ -189,13 +237,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "datetime_prop", EmitDefaultValue = true)]
         public DateTime? DatetimeProp
-        { 
+        {
             get{ return _DatetimeProp;}
             set
             {
                 _DatetimeProp = value;
                 _flagDatetimeProp = true;
-            } 
+            }
         }
         private DateTime? _DatetimeProp;
         private bool _flagDatetimeProp;
@@ -213,13 +261,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "array_nullable_prop", EmitDefaultValue = true)]
         public List<Object> ArrayNullableProp
-        { 
+        {
             get{ return _ArrayNullableProp;}
             set
             {
                 _ArrayNullableProp = value;
                 _flagArrayNullableProp = true;
-            } 
+            }
         }
         private List<Object> _ArrayNullableProp;
         private bool _flagArrayNullableProp;
@@ -237,13 +285,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "array_and_items_nullable_prop", EmitDefaultValue = true)]
         public List<Object> ArrayAndItemsNullableProp
-        { 
+        {
             get{ return _ArrayAndItemsNullableProp;}
             set
             {
                 _ArrayAndItemsNullableProp = value;
                 _flagArrayAndItemsNullableProp = true;
-            } 
+            }
         }
         private List<Object> _ArrayAndItemsNullableProp;
         private bool _flagArrayAndItemsNullableProp;
@@ -261,13 +309,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "array_items_nullable", EmitDefaultValue = false)]
         public List<Object> ArrayItemsNullable
-        { 
+        {
             get{ return _ArrayItemsNullable;}
             set
             {
                 _ArrayItemsNullable = value;
                 _flagArrayItemsNullable = true;
-            } 
+            }
         }
         private List<Object> _ArrayItemsNullable;
         private bool _flagArrayItemsNullable;
@@ -285,13 +333,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "object_nullable_prop", EmitDefaultValue = true)]
         public Dictionary<string, Object> ObjectNullableProp
-        { 
+        {
             get{ return _ObjectNullableProp;}
             set
             {
                 _ObjectNullableProp = value;
                 _flagObjectNullableProp = true;
-            } 
+            }
         }
         private Dictionary<string, Object> _ObjectNullableProp;
         private bool _flagObjectNullableProp;
@@ -309,13 +357,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "object_and_items_nullable_prop", EmitDefaultValue = true)]
         public Dictionary<string, Object> ObjectAndItemsNullableProp
-        { 
+        {
             get{ return _ObjectAndItemsNullableProp;}
             set
             {
                 _ObjectAndItemsNullableProp = value;
                 _flagObjectAndItemsNullableProp = true;
-            } 
+            }
         }
         private Dictionary<string, Object> _ObjectAndItemsNullableProp;
         private bool _flagObjectAndItemsNullableProp;
@@ -333,13 +381,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "object_items_nullable", EmitDefaultValue = false)]
         public Dictionary<string, Object> ObjectItemsNullable
-        { 
+        {
             get{ return _ObjectItemsNullable;}
             set
             {
                 _ObjectItemsNullable = value;
                 _flagObjectItemsNullable = true;
-            } 
+            }
         }
         private Dictionary<string, Object> _ObjectItemsNullable;
         private bool _flagObjectItemsNullable;
@@ -358,7 +406,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class NullableClass {\n");
             sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
             sb.Append("  IntegerProp: ").Append(IntegerProp).Append("\n");
@@ -416,29 +464,53 @@ namespace Org.OpenAPITools.Model
             {
                 int hashCode = base.GetHashCode();
                 if (this.IntegerProp != null)
-                    hashCode = hashCode * 59 + this.IntegerProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.IntegerProp.GetHashCode();
+                }
                 if (this.NumberProp != null)
-                    hashCode = hashCode * 59 + this.NumberProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.NumberProp.GetHashCode();
+                }
                 if (this.BooleanProp != null)
-                    hashCode = hashCode * 59 + this.BooleanProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.BooleanProp.GetHashCode();
+                }
                 if (this.StringProp != null)
-                    hashCode = hashCode * 59 + this.StringProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.StringProp.GetHashCode();
+                }
                 if (this.DateProp != null)
-                    hashCode = hashCode * 59 + this.DateProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DateProp.GetHashCode();
+                }
                 if (this.DatetimeProp != null)
-                    hashCode = hashCode * 59 + this.DatetimeProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DatetimeProp.GetHashCode();
+                }
                 if (this.ArrayNullableProp != null)
-                    hashCode = hashCode * 59 + this.ArrayNullableProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ArrayNullableProp.GetHashCode();
+                }
                 if (this.ArrayAndItemsNullableProp != null)
-                    hashCode = hashCode * 59 + this.ArrayAndItemsNullableProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ArrayAndItemsNullableProp.GetHashCode();
+                }
                 if (this.ArrayItemsNullable != null)
-                    hashCode = hashCode * 59 + this.ArrayItemsNullable.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ArrayItemsNullable.GetHashCode();
+                }
                 if (this.ObjectNullableProp != null)
-                    hashCode = hashCode * 59 + this.ObjectNullableProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ObjectNullableProp.GetHashCode();
+                }
                 if (this.ObjectAndItemsNullableProp != null)
-                    hashCode = hashCode * 59 + this.ObjectAndItemsNullableProp.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ObjectAndItemsNullableProp.GetHashCode();
+                }
                 if (this.ObjectItemsNullable != null)
-                    hashCode = hashCode * 59 + this.ObjectItemsNullable.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ObjectItemsNullable.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -448,7 +520,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

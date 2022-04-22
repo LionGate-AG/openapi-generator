@@ -18,11 +18,13 @@ import {
     BehaviorTypeFromJSON,
     BehaviorTypeFromJSONTyped,
     BehaviorTypeToJSON,
+} from './BehaviorType';
+import {
     ResponseMeta,
     ResponseMetaFromJSON,
     ResponseMetaFromJSONTyped,
     ResponseMetaToJSON,
-} from './';
+} from './ResponseMeta';
 
 /**
  * 
@@ -72,5 +74,4 @@ export function GetBehaviorTypeResponseToJSON(value?: GetBehaviorTypeResponse | 
         'data': BehaviorTypeToJSON(value.data),
     };
 }
-
 

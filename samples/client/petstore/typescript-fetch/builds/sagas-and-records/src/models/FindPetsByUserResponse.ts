@@ -18,11 +18,13 @@ import {
     ResponseMetaFromJSON,
     ResponseMetaFromJSONTyped,
     ResponseMetaToJSON,
+} from './ResponseMeta';
+import {
     User,
     UserFromJSON,
     UserFromJSONTyped,
     UserToJSON,
-} from './';
+} from './User';
 
 /**
  * 
@@ -72,5 +74,4 @@ export function FindPetsByUserResponseToJSON(value?: FindPetsByUserResponse | nu
         'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(UserToJSON)),
     };
 }
-
 

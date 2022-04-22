@@ -41,8 +41,20 @@ namespace Org.OpenAPITools.Model
         public ArrayTest(List<string> arrayOfString = default(List<string>), List<List<long>> arrayArrayOfInteger = default(List<List<long>>), List<List<ReadOnlyFirst>> arrayArrayOfModel = default(List<List<ReadOnlyFirst>>))
         {
             this._ArrayOfString = arrayOfString;
+            if (this.ArrayOfString != null)
+            {
+                this._flagArrayOfString = true;
+            }
             this._ArrayArrayOfInteger = arrayArrayOfInteger;
+            if (this.ArrayArrayOfInteger != null)
+            {
+                this._flagArrayArrayOfInteger = true;
+            }
             this._ArrayArrayOfModel = arrayArrayOfModel;
+            if (this.ArrayArrayOfModel != null)
+            {
+                this._flagArrayArrayOfModel = true;
+            }
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -51,13 +63,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "array_of_string", EmitDefaultValue = false)]
         public List<string> ArrayOfString
-        { 
+        {
             get{ return _ArrayOfString;}
             set
             {
                 _ArrayOfString = value;
                 _flagArrayOfString = true;
-            } 
+            }
         }
         private List<string> _ArrayOfString;
         private bool _flagArrayOfString;
@@ -75,13 +87,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "array_array_of_integer", EmitDefaultValue = false)]
         public List<List<long>> ArrayArrayOfInteger
-        { 
+        {
             get{ return _ArrayArrayOfInteger;}
             set
             {
                 _ArrayArrayOfInteger = value;
                 _flagArrayArrayOfInteger = true;
-            } 
+            }
         }
         private List<List<long>> _ArrayArrayOfInteger;
         private bool _flagArrayArrayOfInteger;
@@ -99,13 +111,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "array_array_of_model", EmitDefaultValue = false)]
         public List<List<ReadOnlyFirst>> ArrayArrayOfModel
-        { 
+        {
             get{ return _ArrayArrayOfModel;}
             set
             {
                 _ArrayArrayOfModel = value;
                 _flagArrayArrayOfModel = true;
-            } 
+            }
         }
         private List<List<ReadOnlyFirst>> _ArrayArrayOfModel;
         private bool _flagArrayArrayOfModel;
@@ -130,7 +142,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class ArrayTest {\n");
             sb.Append("  ArrayOfString: ").Append(ArrayOfString).Append("\n");
             sb.Append("  ArrayArrayOfInteger: ").Append(ArrayArrayOfInteger).Append("\n");
@@ -179,13 +191,21 @@ namespace Org.OpenAPITools.Model
             {
                 int hashCode = 41;
                 if (this.ArrayOfString != null)
-                    hashCode = hashCode * 59 + this.ArrayOfString.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ArrayOfString.GetHashCode();
+                }
                 if (this.ArrayArrayOfInteger != null)
-                    hashCode = hashCode * 59 + this.ArrayArrayOfInteger.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ArrayArrayOfInteger.GetHashCode();
+                }
                 if (this.ArrayArrayOfModel != null)
-                    hashCode = hashCode * 59 + this.ArrayArrayOfModel.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ArrayArrayOfModel.GetHashCode();
+                }
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -195,7 +215,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

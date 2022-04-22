@@ -18,7 +18,7 @@ import {
     ResponseMetaFromJSON,
     ResponseMetaFromJSONTyped,
     ResponseMetaToJSON,
-} from './';
+} from './ResponseMeta';
 
 /**
  * 
@@ -68,5 +68,4 @@ export function GetBehaviorPermissionsResponseToJSON(value?: GetBehaviorPermissi
         'data': value.data,
     };
 }
-
 

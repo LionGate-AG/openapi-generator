@@ -24,7 +24,8 @@ abstract class EnumArrays implements Built<EnumArrays, EnumArraysBuilder> {
 
     EnumArrays._();
 
-    static void _initializeBuilder(EnumArraysBuilder b) => b;
+    @BuiltValueHook(initializeBuilder: true)
+    static void _defaults(EnumArraysBuilder b) => b;
 
     factory EnumArrays([void updates(EnumArraysBuilder b)]) = _$EnumArrays;
 
@@ -68,14 +69,17 @@ class _$EnumArraysSerializer implements StructuredSerializer<EnumArrays> {
             final key = iterator.current as String;
             iterator.moveNext();
             final Object? value = iterator.current;
+            
             switch (key) {
                 case r'just_symbol':
-                    result.justSymbol = serializers.deserialize(value,
+                    final valueDes = serializers.deserialize(value,
                         specifiedType: const FullType(EnumArraysJustSymbolEnum)) as EnumArraysJustSymbolEnum;
+                    result.justSymbol = valueDes;
                     break;
                 case r'array_enum':
-                    result.arrayEnum.replace(serializers.deserialize(value,
-                        specifiedType: const FullType(BuiltList, [FullType(EnumArraysArrayEnumEnum)])) as BuiltList<EnumArraysArrayEnumEnum>);
+                    final valueDes = serializers.deserialize(value,
+                        specifiedType: const FullType(BuiltList, [FullType(EnumArraysArrayEnumEnum)])) as BuiltList<EnumArraysArrayEnumEnum>;
+                    result.arrayEnum.replace(valueDes);
                     break;
             }
         }
@@ -89,6 +93,8 @@ class EnumArraysJustSymbolEnum extends EnumClass {
   static const EnumArraysJustSymbolEnum greaterThanEqual = _$enumArraysJustSymbolEnum_greaterThanEqual;
   @BuiltValueEnumConst(wireName: r'$')
   static const EnumArraysJustSymbolEnum dollar = _$enumArraysJustSymbolEnum_dollar;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const EnumArraysJustSymbolEnum unknownDefaultOpenApi = _$enumArraysJustSymbolEnum_unknownDefaultOpenApi;
 
   static Serializer<EnumArraysJustSymbolEnum> get serializer => _$enumArraysJustSymbolEnumSerializer;
 
@@ -104,6 +110,8 @@ class EnumArraysArrayEnumEnum extends EnumClass {
   static const EnumArraysArrayEnumEnum fish = _$enumArraysArrayEnumEnum_fish;
   @BuiltValueEnumConst(wireName: r'crab')
   static const EnumArraysArrayEnumEnum crab = _$enumArraysArrayEnumEnum_crab;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api', fallback: true)
+  static const EnumArraysArrayEnumEnum unknownDefaultOpenApi = _$enumArraysArrayEnumEnum_unknownDefaultOpenApi;
 
   static Serializer<EnumArraysArrayEnumEnum> get serializer => _$enumArraysArrayEnumEnumSerializer;
 

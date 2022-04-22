@@ -63,14 +63,14 @@ class OpenApiGeneratorPlugin : Plugin<Project> {
             generate.outputDir.set("$buildDir/generate-resources/main")
 
             tasks.apply {
-                create("openApiGenerators", GeneratorsTask::class.java) {
+                register("openApiGenerators", GeneratorsTask::class.java).configure {
                     group = pluginGroup
                     description = "Lists generators available via Open API Generators."
 
                     include.set(generators.include)
                 }
 
-                create("openApiMeta", MetaTask::class.java) {
+                register("openApiMeta", MetaTask::class.java).configure {
                     group = pluginGroup
                     description = "Generates a new generator to be consumed via Open API Generator."
 
@@ -79,7 +79,7 @@ class OpenApiGeneratorPlugin : Plugin<Project> {
                     outputFolder.set(meta.outputFolder)
                 }
 
-                create("openApiValidate", ValidateTask::class.java) {
+                register("openApiValidate", ValidateTask::class.java).configure {
                     group = pluginGroup
                     description = "Validates an Open API 2.0 or 3.x specification document."
 
@@ -87,7 +87,7 @@ class OpenApiGeneratorPlugin : Plugin<Project> {
                     recommend.set(validate.recommend)
                 }
 
-                create("openApiGenerate", GenerateTask::class.java) {
+                register("openApiGenerate", GenerateTask::class.java).configure {
                     group = pluginGroup
                     description = "Generate code via Open API Tools Generator for Open API 2.0 or 3.x specification documents."
 
@@ -106,6 +106,7 @@ class OpenApiGeneratorPlugin : Plugin<Project> {
                     modelPackage.set(generate.modelPackage)
                     modelNamePrefix.set(generate.modelNamePrefix)
                     modelNameSuffix.set(generate.modelNameSuffix)
+                    apiNameSuffix.set(generate.apiNameSuffix)
                     instantiationTypes.set(generate.instantiationTypes)
                     typeMappings.set(generate.typeMappings)
                     additionalProperties.set(generate.additionalProperties)

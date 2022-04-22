@@ -18,11 +18,13 @@ import {
     PetFromJSON,
     PetFromJSONTyped,
     PetToJSON,
+} from './Pet';
+import {
     ResponseMeta,
     ResponseMetaFromJSON,
     ResponseMetaFromJSONTyped,
     ResponseMetaToJSON,
-} from './';
+} from './ResponseMeta';
 
 /**
  * 
@@ -72,5 +74,4 @@ export function FindPetsByStatusResponseToJSON(value?: FindPetsByStatusResponse 
         'data': value.data === undefined ? undefined : ((value.data as Array<any>).map(PetToJSON)),
     };
 }
-
 

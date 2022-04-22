@@ -25,6 +25,15 @@ CREATE TABLE IF NOT EXISTS `AdditionalPropertiesClass` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Table structure for table `AllOfWithSingleRef` generated from model 'AllOfWithSingleRef'
+--
+
+CREATE TABLE IF NOT EXISTS `AllOfWithSingleRef` (
+  `username` TEXT DEFAULT NULL,
+  `SingleRefType` TEXT DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
 -- Table structure for table `Animal` generated from model 'Animal'
 --
 
@@ -518,7 +527,7 @@ CREATE TABLE IF NOT EXISTS `oauth_jwt` (
 CREATE TABLE IF NOT EXISTS `oauth_jti` (
   `issuer`              VARCHAR(80)    NOT NULL,
   `subject`             VARCHAR(80)    DEFAULT NULL,
-  `audiance`            VARCHAR(80)    DEFAULT NULL,
+  `audience`            VARCHAR(80)    DEFAULT NULL,
   `expires`             TIMESTAMP      NOT NULL,
   `jti`                 VARCHAR(2000)  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

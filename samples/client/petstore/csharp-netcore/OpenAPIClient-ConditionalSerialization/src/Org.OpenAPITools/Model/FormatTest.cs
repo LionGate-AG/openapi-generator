@@ -63,22 +63,78 @@ namespace Org.OpenAPITools.Model
         {
             this._Number = number;
             // to ensure "_byte" is required (not null)
-            this._Byte = _byte ?? throw new ArgumentNullException("_byte is a required property for FormatTest and cannot be null");
+            if (_byte == null)
+            {
+                throw new ArgumentNullException("_byte is a required property for FormatTest and cannot be null");
+            }
+            this._Byte = _byte;
             this._Date = date;
             // to ensure "password" is required (not null)
-            this._Password = password ?? throw new ArgumentNullException("password is a required property for FormatTest and cannot be null");
+            if (password == null)
+            {
+                throw new ArgumentNullException("password is a required property for FormatTest and cannot be null");
+            }
+            this._Password = password;
             this._Integer = integer;
+            if (this.Integer != null)
+            {
+                this._flagInteger = true;
+            }
             this._Int32 = int32;
+            if (this.Int32 != null)
+            {
+                this._flagInt32 = true;
+            }
             this._Int64 = int64;
+            if (this.Int64 != null)
+            {
+                this._flagInt64 = true;
+            }
             this._Float = _float;
+            if (this.Float != null)
+            {
+                this._flagFloat = true;
+            }
             this._Double = _double;
+            if (this.Double != null)
+            {
+                this._flagDouble = true;
+            }
             this._Decimal = _decimal;
+            if (this.Decimal != null)
+            {
+                this._flagDecimal = true;
+            }
             this._String = _string;
+            if (this.String != null)
+            {
+                this._flagString = true;
+            }
             this._Binary = binary;
+            if (this.Binary != null)
+            {
+                this._flagBinary = true;
+            }
             this._DateTime = dateTime;
+            if (this.DateTime != null)
+            {
+                this._flagDateTime = true;
+            }
             this._Uuid = uuid;
+            if (this.Uuid != null)
+            {
+                this._flagUuid = true;
+            }
             this._PatternWithDigits = patternWithDigits;
+            if (this.PatternWithDigits != null)
+            {
+                this._flagPatternWithDigits = true;
+            }
             this._PatternWithDigitsAndDelimiter = patternWithDigitsAndDelimiter;
+            if (this.PatternWithDigitsAndDelimiter != null)
+            {
+                this._flagPatternWithDigitsAndDelimiter = true;
+            }
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -87,13 +143,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "integer", EmitDefaultValue = false)]
         public int Integer
-        { 
+        {
             get{ return _Integer;}
             set
             {
                 _Integer = value;
                 _flagInteger = true;
-            } 
+            }
         }
         private int _Integer;
         private bool _flagInteger;
@@ -111,13 +167,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "int32", EmitDefaultValue = false)]
         public int Int32
-        { 
+        {
             get{ return _Int32;}
             set
             {
                 _Int32 = value;
                 _flagInt32 = true;
-            } 
+            }
         }
         private int _Int32;
         private bool _flagInt32;
@@ -135,13 +191,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "int64", EmitDefaultValue = false)]
         public long Int64
-        { 
+        {
             get{ return _Int64;}
             set
             {
                 _Int64 = value;
                 _flagInt64 = true;
-            } 
+            }
         }
         private long _Int64;
         private bool _flagInt64;
@@ -159,13 +215,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "number", IsRequired = true, EmitDefaultValue = false)]
         public decimal Number
-        { 
+        {
             get{ return _Number;}
             set
             {
                 _Number = value;
                 _flagNumber = true;
-            } 
+            }
         }
         private decimal _Number;
         private bool _flagNumber;
@@ -183,13 +239,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "float", EmitDefaultValue = false)]
         public float Float
-        { 
+        {
             get{ return _Float;}
             set
             {
                 _Float = value;
                 _flagFloat = true;
-            } 
+            }
         }
         private float _Float;
         private bool _flagFloat;
@@ -207,13 +263,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "double", EmitDefaultValue = false)]
         public double Double
-        { 
+        {
             get{ return _Double;}
             set
             {
                 _Double = value;
                 _flagDouble = true;
-            } 
+            }
         }
         private double _Double;
         private bool _flagDouble;
@@ -231,13 +287,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "decimal", EmitDefaultValue = false)]
         public decimal Decimal
-        { 
+        {
             get{ return _Decimal;}
             set
             {
                 _Decimal = value;
                 _flagDecimal = true;
-            } 
+            }
         }
         private decimal _Decimal;
         private bool _flagDecimal;
@@ -255,13 +311,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "string", EmitDefaultValue = false)]
         public string String
-        { 
+        {
             get{ return _String;}
             set
             {
                 _String = value;
                 _flagString = true;
-            } 
+            }
         }
         private string _String;
         private bool _flagString;
@@ -279,13 +335,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "byte", IsRequired = true, EmitDefaultValue = false)]
         public byte[] Byte
-        { 
+        {
             get{ return _Byte;}
             set
             {
                 _Byte = value;
                 _flagByte = true;
-            } 
+            }
         }
         private byte[] _Byte;
         private bool _flagByte;
@@ -303,13 +359,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "binary", EmitDefaultValue = false)]
         public System.IO.Stream Binary
-        { 
+        {
             get{ return _Binary;}
             set
             {
                 _Binary = value;
                 _flagBinary = true;
-            } 
+            }
         }
         private System.IO.Stream _Binary;
         private bool _flagBinary;
@@ -328,13 +384,13 @@ namespace Org.OpenAPITools.Model
         [JsonConverter(typeof(OpenAPIDateConverter))]
         [DataMember(Name = "date", IsRequired = true, EmitDefaultValue = false)]
         public DateTime Date
-        { 
+        {
             get{ return _Date;}
             set
             {
                 _Date = value;
                 _flagDate = true;
-            } 
+            }
         }
         private DateTime _Date;
         private bool _flagDate;
@@ -352,13 +408,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "dateTime", EmitDefaultValue = false)]
         public DateTime DateTime
-        { 
+        {
             get{ return _DateTime;}
             set
             {
                 _DateTime = value;
                 _flagDateTime = true;
-            } 
+            }
         }
         private DateTime _DateTime;
         private bool _flagDateTime;
@@ -376,13 +432,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "uuid", EmitDefaultValue = false)]
         public Guid Uuid
-        { 
+        {
             get{ return _Uuid;}
             set
             {
                 _Uuid = value;
                 _flagUuid = true;
-            } 
+            }
         }
         private Guid _Uuid;
         private bool _flagUuid;
@@ -400,13 +456,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "password", IsRequired = true, EmitDefaultValue = false)]
         public string Password
-        { 
+        {
             get{ return _Password;}
             set
             {
                 _Password = value;
                 _flagPassword = true;
-            } 
+            }
         }
         private string _Password;
         private bool _flagPassword;
@@ -425,13 +481,13 @@ namespace Org.OpenAPITools.Model
         /// <value>A string that is a 10 digit number. Can have leading zeros.</value>
         [DataMember(Name = "pattern_with_digits", EmitDefaultValue = false)]
         public string PatternWithDigits
-        { 
+        {
             get{ return _PatternWithDigits;}
             set
             {
                 _PatternWithDigits = value;
                 _flagPatternWithDigits = true;
-            } 
+            }
         }
         private string _PatternWithDigits;
         private bool _flagPatternWithDigits;
@@ -450,13 +506,13 @@ namespace Org.OpenAPITools.Model
         /// <value>A string starting with &#39;image_&#39; (case insensitive) and one to three digits following i.e. Image_01.</value>
         [DataMember(Name = "pattern_with_digits_and_delimiter", EmitDefaultValue = false)]
         public string PatternWithDigitsAndDelimiter
-        { 
+        {
             get{ return _PatternWithDigitsAndDelimiter;}
             set
             {
                 _PatternWithDigitsAndDelimiter = value;
                 _flagPatternWithDigitsAndDelimiter = true;
-            } 
+            }
         }
         private string _PatternWithDigitsAndDelimiter;
         private bool _flagPatternWithDigitsAndDelimiter;
@@ -481,7 +537,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class FormatTest {\n");
             sb.Append("  Integer: ").Append(Integer).Append("\n");
             sb.Append("  Int32: ").Append(Int32).Append("\n");
@@ -542,33 +598,53 @@ namespace Org.OpenAPITools.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = hashCode * 59 + this.Integer.GetHashCode();
-                hashCode = hashCode * 59 + this.Int32.GetHashCode();
-                hashCode = hashCode * 59 + this.Int64.GetHashCode();
-                hashCode = hashCode * 59 + this.Number.GetHashCode();
-                hashCode = hashCode * 59 + this.Float.GetHashCode();
-                hashCode = hashCode * 59 + this.Double.GetHashCode();
-                hashCode = hashCode * 59 + this.Decimal.GetHashCode();
+                hashCode = (hashCode * 59) + this.Integer.GetHashCode();
+                hashCode = (hashCode * 59) + this.Int32.GetHashCode();
+                hashCode = (hashCode * 59) + this.Int64.GetHashCode();
+                hashCode = (hashCode * 59) + this.Number.GetHashCode();
+                hashCode = (hashCode * 59) + this.Float.GetHashCode();
+                hashCode = (hashCode * 59) + this.Double.GetHashCode();
+                hashCode = (hashCode * 59) + this.Decimal.GetHashCode();
                 if (this.String != null)
-                    hashCode = hashCode * 59 + this.String.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.String.GetHashCode();
+                }
                 if (this.Byte != null)
-                    hashCode = hashCode * 59 + this.Byte.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Byte.GetHashCode();
+                }
                 if (this.Binary != null)
-                    hashCode = hashCode * 59 + this.Binary.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Binary.GetHashCode();
+                }
                 if (this.Date != null)
-                    hashCode = hashCode * 59 + this.Date.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Date.GetHashCode();
+                }
                 if (this.DateTime != null)
-                    hashCode = hashCode * 59 + this.DateTime.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.DateTime.GetHashCode();
+                }
                 if (this.Uuid != null)
-                    hashCode = hashCode * 59 + this.Uuid.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Uuid.GetHashCode();
+                }
                 if (this.Password != null)
-                    hashCode = hashCode * 59 + this.Password.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
+                }
                 if (this.PatternWithDigits != null)
-                    hashCode = hashCode * 59 + this.PatternWithDigits.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PatternWithDigits.GetHashCode();
+                }
                 if (this.PatternWithDigitsAndDelimiter != null)
-                    hashCode = hashCode * 59 + this.PatternWithDigitsAndDelimiter.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.PatternWithDigitsAndDelimiter.GetHashCode();
+                }
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -578,64 +654,64 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // Integer (int) maximum
-            if(this.Integer > (int)100)
+            if (this.Integer > (int)100)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Integer, must be a value less than or equal to 100.", new [] { "Integer" });
             }
 
             // Integer (int) minimum
-            if(this.Integer < (int)10)
+            if (this.Integer < (int)10)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Integer, must be a value greater than or equal to 10.", new [] { "Integer" });
             }
 
             // Int32 (int) maximum
-            if(this.Int32 > (int)200)
+            if (this.Int32 > (int)200)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Int32, must be a value less than or equal to 200.", new [] { "Int32" });
             }
 
             // Int32 (int) minimum
-            if(this.Int32 < (int)20)
+            if (this.Int32 < (int)20)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Int32, must be a value greater than or equal to 20.", new [] { "Int32" });
             }
 
             // Number (decimal) maximum
-            if(this.Number > (decimal)543.2)
+            if (this.Number > (decimal)543.2)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Number, must be a value less than or equal to 543.2.", new [] { "Number" });
             }
 
             // Number (decimal) minimum
-            if(this.Number < (decimal)32.1)
+            if (this.Number < (decimal)32.1)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Number, must be a value greater than or equal to 32.1.", new [] { "Number" });
             }
 
             // Float (float) maximum
-            if(this.Float > (float)987.6)
+            if (this.Float > (float)987.6)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Float, must be a value less than or equal to 987.6.", new [] { "Float" });
             }
 
             // Float (float) minimum
-            if(this.Float < (float)54.3)
+            if (this.Float < (float)54.3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Float, must be a value greater than or equal to 54.3.", new [] { "Float" });
             }
 
             // Double (double) maximum
-            if(this.Double > (double)123.4)
+            if (this.Double > (double)123.4)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Double, must be a value less than or equal to 123.4.", new [] { "Double" });
             }
 
             // Double (double) minimum
-            if(this.Double < (double)67.8)
+            if (this.Double < (double)67.8)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Double, must be a value greater than or equal to 67.8.", new [] { "Double" });
             }
@@ -648,13 +724,13 @@ namespace Org.OpenAPITools.Model
             }
 
             // Password (string) maxLength
-            if(this.Password != null && this.Password.Length > 64)
+            if (this.Password != null && this.Password.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Password, length must be less than 64.", new [] { "Password" });
             }
 
             // Password (string) minLength
-            if(this.Password != null && this.Password.Length < 10)
+            if (this.Password != null && this.Password.Length < 10)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Password, length must be greater than 10.", new [] { "Password" });
             }

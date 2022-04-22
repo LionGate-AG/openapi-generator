@@ -29,6 +29,7 @@
   "paths" : {
     "/pet" : {
       "post" : {
+        "description" : "",
         "operationId" : "addPet",
         "requestBody" : {
           "$ref" : "#/components/requestBodies/Pet"
@@ -60,6 +61,7 @@
         "tags" : [ "pet" ]
       },
       "put" : {
+        "description" : "",
         "operationId" : "updatePet",
         "requestBody" : {
           "$ref" : "#/components/requestBodies/Pet"
@@ -102,6 +104,7 @@
         "description" : "Multiple status values can be provided with comma separated strings",
         "operationId" : "findPetsByStatus",
         "parameters" : [ {
+          "deprecated" : true,
           "description" : "Status values that need to be considered for filter",
           "explode" : false,
           "in" : "query",
@@ -204,6 +207,7 @@
     },
     "/pet/{petId}" : {
       "delete" : {
+        "description" : "",
         "operationId" : "deletePet",
         "parameters" : [ {
           "explode" : false,
@@ -282,6 +286,7 @@
         "tags" : [ "pet" ]
       },
       "post" : {
+        "description" : "",
         "operationId" : "updatePetWithForm",
         "parameters" : [ {
           "description" : "ID of pet that needs to be updated",
@@ -329,6 +334,7 @@
     },
     "/pet/{petId}/uploadImage" : {
       "post" : {
+        "description" : "",
         "operationId" : "uploadFile",
         "parameters" : [ {
           "description" : "ID of pet to update",
@@ -411,6 +417,7 @@
     },
     "/store/order" : {
       "post" : {
+        "description" : "",
         "operationId" : "placeOrder",
         "requestBody" : {
           "content" : {
@@ -546,6 +553,7 @@
     },
     "/user/createWithArray" : {
       "post" : {
+        "description" : "",
         "operationId" : "createUsersWithArrayInput",
         "requestBody" : {
           "$ref" : "#/components/requestBodies/UserArray"
@@ -564,6 +572,7 @@
     },
     "/user/createWithList" : {
       "post" : {
+        "description" : "",
         "operationId" : "createUsersWithListInput",
         "requestBody" : {
           "$ref" : "#/components/requestBodies/UserArray"
@@ -582,6 +591,7 @@
     },
     "/user/login" : {
       "get" : {
+        "description" : "",
         "operationId" : "loginUser",
         "parameters" : [ {
           "description" : "The user name for login",
@@ -640,7 +650,7 @@
                 "style" : "simple"
               },
               "X-Expires-After" : {
-                "description" : "date in UTC when toekn expires",
+                "description" : "date in UTC when token expires",
                 "explode" : false,
                 "schema" : {
                   "format" : "date-time",
@@ -660,6 +670,7 @@
     },
     "/user/logout" : {
       "get" : {
+        "description" : "",
         "operationId" : "logoutUser",
         "responses" : {
           "default" : {
@@ -703,6 +714,7 @@
         "tags" : [ "user" ]
       },
       "get" : {
+        "description" : "",
         "operationId" : "getUserByName",
         "parameters" : [ {
           "description" : "The name that needs to be fetched. Use user1 for testing.",
@@ -1019,6 +1031,7 @@
             }
           },
           "status" : {
+            "deprecated" : true,
             "description" : "pet status in the store",
             "enum" : [ "available", "pending", "sold" ],
             "type" : "string"

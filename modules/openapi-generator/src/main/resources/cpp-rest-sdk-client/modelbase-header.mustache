@@ -9,14 +9,15 @@
 #define {{modelHeaderGuardPrefix}}_ModelBase_H_
 
 {{{defaultInclude}}}
-#include <map>
-#include <vector>
 
-#include "HttpContent.h"
-#include "MultipartFormData.h"
+#include "{{packageName}}/HttpContent.h"
+#include "{{packageName}}/MultipartFormData.h"
 
 #include <cpprest/details/basic_types.h>
 #include <cpprest/json.h>
+
+#include <map>
+#include <vector>
 
 {{#modelNamespaceDeclarations}}
 namespace {{this}} {
@@ -201,7 +202,7 @@ bool ModelBase::fromString( const utility::string_t& val, std::shared_ptr<T>& ou
     if(outVal == nullptr)
     {
         outVal = std::shared_ptr<T>(new T());
-    }    
+    }
     if( outVal != nullptr )
     {
         ok = outVal->fromJson(web::json::value::parse(val));

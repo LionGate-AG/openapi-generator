@@ -46,13 +46,45 @@ namespace Org.OpenAPITools.Model
         public AdditionalPropertiesClass(Dictionary<string, string> mapProperty = default(Dictionary<string, string>), Dictionary<string, Dictionary<string, string>> mapOfMapProperty = default(Dictionary<string, Dictionary<string, string>>), Object anytype1 = default(Object), Object mapWithUndeclaredPropertiesAnytype1 = default(Object), Object mapWithUndeclaredPropertiesAnytype2 = default(Object), Dictionary<string, Object> mapWithUndeclaredPropertiesAnytype3 = default(Dictionary<string, Object>), Object emptyMap = default(Object), Dictionary<string, string> mapWithUndeclaredPropertiesString = default(Dictionary<string, string>))
         {
             this._MapProperty = mapProperty;
+            if (this.MapProperty != null)
+            {
+                this._flagMapProperty = true;
+            }
             this._MapOfMapProperty = mapOfMapProperty;
+            if (this.MapOfMapProperty != null)
+            {
+                this._flagMapOfMapProperty = true;
+            }
             this._Anytype1 = anytype1;
+            if (this.Anytype1 != null)
+            {
+                this._flagAnytype1 = true;
+            }
             this._MapWithUndeclaredPropertiesAnytype1 = mapWithUndeclaredPropertiesAnytype1;
+            if (this.MapWithUndeclaredPropertiesAnytype1 != null)
+            {
+                this._flagMapWithUndeclaredPropertiesAnytype1 = true;
+            }
             this._MapWithUndeclaredPropertiesAnytype2 = mapWithUndeclaredPropertiesAnytype2;
+            if (this.MapWithUndeclaredPropertiesAnytype2 != null)
+            {
+                this._flagMapWithUndeclaredPropertiesAnytype2 = true;
+            }
             this._MapWithUndeclaredPropertiesAnytype3 = mapWithUndeclaredPropertiesAnytype3;
+            if (this.MapWithUndeclaredPropertiesAnytype3 != null)
+            {
+                this._flagMapWithUndeclaredPropertiesAnytype3 = true;
+            }
             this._EmptyMap = emptyMap;
+            if (this.EmptyMap != null)
+            {
+                this._flagEmptyMap = true;
+            }
             this._MapWithUndeclaredPropertiesString = mapWithUndeclaredPropertiesString;
+            if (this.MapWithUndeclaredPropertiesString != null)
+            {
+                this._flagMapWithUndeclaredPropertiesString = true;
+            }
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -61,13 +93,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "map_property", EmitDefaultValue = false)]
         public Dictionary<string, string> MapProperty
-        { 
+        {
             get{ return _MapProperty;}
             set
             {
                 _MapProperty = value;
                 _flagMapProperty = true;
-            } 
+            }
         }
         private Dictionary<string, string> _MapProperty;
         private bool _flagMapProperty;
@@ -85,13 +117,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "map_of_map_property", EmitDefaultValue = false)]
         public Dictionary<string, Dictionary<string, string>> MapOfMapProperty
-        { 
+        {
             get{ return _MapOfMapProperty;}
             set
             {
                 _MapOfMapProperty = value;
                 _flagMapOfMapProperty = true;
-            } 
+            }
         }
         private Dictionary<string, Dictionary<string, string>> _MapOfMapProperty;
         private bool _flagMapOfMapProperty;
@@ -109,13 +141,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "anytype_1", EmitDefaultValue = true)]
         public Object Anytype1
-        { 
+        {
             get{ return _Anytype1;}
             set
             {
                 _Anytype1 = value;
                 _flagAnytype1 = true;
-            } 
+            }
         }
         private Object _Anytype1;
         private bool _flagAnytype1;
@@ -133,13 +165,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "map_with_undeclared_properties_anytype_1", EmitDefaultValue = false)]
         public Object MapWithUndeclaredPropertiesAnytype1
-        { 
+        {
             get{ return _MapWithUndeclaredPropertiesAnytype1;}
             set
             {
                 _MapWithUndeclaredPropertiesAnytype1 = value;
                 _flagMapWithUndeclaredPropertiesAnytype1 = true;
-            } 
+            }
         }
         private Object _MapWithUndeclaredPropertiesAnytype1;
         private bool _flagMapWithUndeclaredPropertiesAnytype1;
@@ -157,13 +189,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "map_with_undeclared_properties_anytype_2", EmitDefaultValue = false)]
         public Object MapWithUndeclaredPropertiesAnytype2
-        { 
+        {
             get{ return _MapWithUndeclaredPropertiesAnytype2;}
             set
             {
                 _MapWithUndeclaredPropertiesAnytype2 = value;
                 _flagMapWithUndeclaredPropertiesAnytype2 = true;
-            } 
+            }
         }
         private Object _MapWithUndeclaredPropertiesAnytype2;
         private bool _flagMapWithUndeclaredPropertiesAnytype2;
@@ -181,13 +213,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "map_with_undeclared_properties_anytype_3", EmitDefaultValue = false)]
         public Dictionary<string, Object> MapWithUndeclaredPropertiesAnytype3
-        { 
+        {
             get{ return _MapWithUndeclaredPropertiesAnytype3;}
             set
             {
                 _MapWithUndeclaredPropertiesAnytype3 = value;
                 _flagMapWithUndeclaredPropertiesAnytype3 = true;
-            } 
+            }
         }
         private Dictionary<string, Object> _MapWithUndeclaredPropertiesAnytype3;
         private bool _flagMapWithUndeclaredPropertiesAnytype3;
@@ -206,13 +238,13 @@ namespace Org.OpenAPITools.Model
         /// <value>an object with no declared properties and no undeclared properties, hence it&#39;s an empty map.</value>
         [DataMember(Name = "empty_map", EmitDefaultValue = false)]
         public Object EmptyMap
-        { 
+        {
             get{ return _EmptyMap;}
             set
             {
                 _EmptyMap = value;
                 _flagEmptyMap = true;
-            } 
+            }
         }
         private Object _EmptyMap;
         private bool _flagEmptyMap;
@@ -230,13 +262,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "map_with_undeclared_properties_string", EmitDefaultValue = false)]
         public Dictionary<string, string> MapWithUndeclaredPropertiesString
-        { 
+        {
             get{ return _MapWithUndeclaredPropertiesString;}
             set
             {
                 _MapWithUndeclaredPropertiesString = value;
                 _flagMapWithUndeclaredPropertiesString = true;
-            } 
+            }
         }
         private Dictionary<string, string> _MapWithUndeclaredPropertiesString;
         private bool _flagMapWithUndeclaredPropertiesString;
@@ -261,7 +293,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalPropertiesClass {\n");
             sb.Append("  MapProperty: ").Append(MapProperty).Append("\n");
             sb.Append("  MapOfMapProperty: ").Append(MapOfMapProperty).Append("\n");
@@ -315,23 +347,41 @@ namespace Org.OpenAPITools.Model
             {
                 int hashCode = 41;
                 if (this.MapProperty != null)
-                    hashCode = hashCode * 59 + this.MapProperty.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MapProperty.GetHashCode();
+                }
                 if (this.MapOfMapProperty != null)
-                    hashCode = hashCode * 59 + this.MapOfMapProperty.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MapOfMapProperty.GetHashCode();
+                }
                 if (this.Anytype1 != null)
-                    hashCode = hashCode * 59 + this.Anytype1.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.Anytype1.GetHashCode();
+                }
                 if (this.MapWithUndeclaredPropertiesAnytype1 != null)
-                    hashCode = hashCode * 59 + this.MapWithUndeclaredPropertiesAnytype1.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MapWithUndeclaredPropertiesAnytype1.GetHashCode();
+                }
                 if (this.MapWithUndeclaredPropertiesAnytype2 != null)
-                    hashCode = hashCode * 59 + this.MapWithUndeclaredPropertiesAnytype2.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MapWithUndeclaredPropertiesAnytype2.GetHashCode();
+                }
                 if (this.MapWithUndeclaredPropertiesAnytype3 != null)
-                    hashCode = hashCode * 59 + this.MapWithUndeclaredPropertiesAnytype3.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MapWithUndeclaredPropertiesAnytype3.GetHashCode();
+                }
                 if (this.EmptyMap != null)
-                    hashCode = hashCode * 59 + this.EmptyMap.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.EmptyMap.GetHashCode();
+                }
                 if (this.MapWithUndeclaredPropertiesString != null)
-                    hashCode = hashCode * 59 + this.MapWithUndeclaredPropertiesString.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.MapWithUndeclaredPropertiesString.GetHashCode();
+                }
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -341,7 +391,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }

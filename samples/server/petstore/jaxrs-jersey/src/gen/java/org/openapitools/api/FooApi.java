@@ -45,7 +45,7 @@ public class FooApi  {
             } catch (Exception e) {
                throw new RuntimeException(e);
             }
-         } 
+         }
       }
 
       if (delegate == null) {
@@ -55,7 +55,7 @@ public class FooApi  {
       this.delegate = delegate;
    }
 
-    @GET
+    @javax.ws.rs.GET
     
     
     @Produces({ "application/json" })

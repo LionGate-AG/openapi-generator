@@ -18,11 +18,13 @@ import {
     PetPartTypeFromJSON,
     PetPartTypeFromJSONTyped,
     PetPartTypeToJSON,
+} from './PetPartType';
+import {
     ResponseMeta,
     ResponseMetaFromJSON,
     ResponseMetaFromJSONTyped,
     ResponseMetaToJSON,
-} from './';
+} from './ResponseMeta';
 
 /**
  * 
@@ -72,5 +74,4 @@ export function GetPetPartTypeResponseToJSON(value?: GetPetPartTypeResponse | nu
         'data': PetPartTypeToJSON(value.data),
     };
 }
-
 

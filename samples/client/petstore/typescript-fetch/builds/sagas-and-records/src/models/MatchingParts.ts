@@ -18,7 +18,7 @@ import {
     PartFromJSON,
     PartFromJSONTyped,
     PartToJSON,
-} from './';
+} from './Part';
 
 /**
  * Contains all the matching parts
@@ -68,5 +68,4 @@ export function MatchingPartsToJSON(value?: MatchingParts | null): any {
         'related': ((value.related as Array<any>).map(PartToJSON)),
     };
 }
-
 

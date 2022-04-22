@@ -22,6 +22,10 @@ import io.swagger.v3.oas.models.media.Schema;
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.*;
 import org.openapitools.codegen.meta.features.*;
+import org.openapitools.codegen.model.ModelMap;
+import org.openapitools.codegen.model.ModelsMap;
+import org.openapitools.codegen.model.OperationMap;
+import org.openapitools.codegen.model.OperationsMap;
 import org.openapitools.codegen.utils.ModelUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -113,7 +117,7 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
         outputFolder = "generated-code" + File.separator + "php";
         apiTemplateFiles.put("api_controller.mustache", ".php");
         modelTestTemplateFiles.put("testing/model_test.mustache", ".php");
-        apiTestTemplateFiles = new HashMap<String, String>();
+        apiTestTemplateFiles = new HashMap<>();
         apiTestTemplateFiles.put("testing/api_test.mustache", ".php");
         embeddedTemplateDir = templateDir = "php-symfony";
 
@@ -139,7 +143,7 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
         );
 
         // ref: http://php.net/manual/en/language.types.intro.php
-        languageSpecificPrimitives = new HashSet<String>(
+        languageSpecificPrimitives = new HashSet<>(
                 Arrays.asList(
                         "bool",
                         "int",
@@ -151,11 +155,13 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
                         "number",
                         "void",
                         "byte",
-                        "array"
+                        "array",
+                        "\\DateTime",
+                        "UploadedFile"
                 )
         );
 
-        defaultIncludes = new HashSet<String>(
+        defaultIncludes = new HashSet<>(
                 Arrays.asList(
                         "\\DateTime",
                         "UploadedFile"
@@ -165,15 +171,16 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
         variableNamingConvention = "camelCase";
 
         // provide primitives to mustache template
-        List sortedLanguageSpecificPrimitives = new ArrayList(languageSpecificPrimitives);
+        List<String> sortedLanguageSpecificPrimitives = new ArrayList<>(languageSpecificPrimitives);
         Collections.sort(sortedLanguageSpecificPrimitives);
         String primitives = "'" + StringUtils.join(sortedLanguageSpecificPrimitives, "', '") + "'";
         additionalProperties.put("primitives", primitives);
 
         // ref: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
-        typeMapping = new HashMap<String, String>();
+        typeMapping = new HashMap<>();
         typeMapping.put("integer", "int");
         typeMapping.put("long", "int");
+        typeMapping.put("decimal", "float");
         typeMapping.put("number", "float");
         typeMapping.put("float", "float");
         typeMapping.put("double", "double");
@@ -304,7 +311,7 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
         additionalProperties.put("modelTestsPackage", modelTestsPackage);
         additionalProperties.put("controllerTestsPackage", controllerTestsPackage);
 
-        // make Symonfy-specific properties available
+        // make Symfony-specific properties available
         additionalProperties.put("bundleName", bundleName);
         additionalProperties.put("bundleClassName", bundleClassName);
         additionalProperties.put("bundleExtensionName", bundleExtensionName);
@@ -367,13 +374,13 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
         // Type-hintable primitive types
         // ref: http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration
         if (phpLegacySupport) {
-            typeHintable = new HashSet<String>(
+            typeHintable = new HashSet<>(
                     Arrays.asList(
                             "array"
                     )
             );
         } else {
-            typeHintable = new HashSet<String>(
+            typeHintable = new HashSet<>(
                     Arrays.asList(
                             "array",
                             "bool",
@@ -386,15 +393,15 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
     }
 
     @Override
-    public Map<String, Object> postProcessOperationsWithModels(Map<String, Object> objs, List<Object> allModels) {
+    public OperationsMap postProcessOperationsWithModels(OperationsMap objs, List<ModelMap> allModels) {
         objs = super.postProcessOperationsWithModels(objs, allModels);
 
-        Map<String, Object> operations = (Map<String, Object>) objs.get("operations");
-        operations.put("controllerName", toControllerName((String) operations.get("pathPrefix")));
-        operations.put("symfonyService", toSymfonyService((String) operations.get("pathPrefix")));
+        OperationMap operations = objs.getOperations();
+        operations.put("controllerName", toControllerName(operations.getPathPrefix()));
+        operations.put("symfonyService", toSymfonyService(operations.getPathPrefix()));
 
-        List<CodegenSecurity> authMethods = new ArrayList<CodegenSecurity>();
-        List<CodegenOperation> operationList = (List<CodegenOperation>) operations.get("operation");
+        List<CodegenSecurity> authMethods = new ArrayList<>();
+        List<CodegenOperation> operationList = operations.getOperation();
 
         for (CodegenOperation op : operationList) {
             // Loop through all input parameters to determine, whether we have to import something to
@@ -412,17 +419,17 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
                 }
 
                 // Create a variable to display the correct data type in comments for interfaces
-                param.vendorExtensions.put("x-comment-type", param.dataType);
+                param.vendorExtensions.put("x-comment-type", "\\" + param.dataType);
                 if (param.isContainer) {
-                    param.vendorExtensions.put("x-comment-type", param.dataType + "[]");
+                    param.vendorExtensions.put("x-comment-type", "\\" + param.dataType + "[]");
                 }
             }
 
             // Create a variable to display the correct return type in comments for interfaces
             if (op.returnType != null) {
-                op.vendorExtensions.put("x-comment-type", op.returnType);
+                op.vendorExtensions.put("x-comment-type", "\\" + op.returnType);
                 if ("array".equals(op.returnContainer)) {
-                    op.vendorExtensions.put("x-comment-type", op.returnType + "[]");
+                    op.vendorExtensions.put("x-comment-type", "\\" + op.returnType + "[]");
                 }
             } else {
                 op.vendorExtensions.put("x-comment-type", "void");
@@ -444,12 +451,11 @@ public class PhpSymfonyServerCodegen extends AbstractPhpCodegen implements Codeg
     }
 
     @Override
-    public Map<String, Object> postProcessModels(Map<String, Object> objs) {
+    public ModelsMap postProcessModels(ModelsMap objs) {
         objs = super.postProcessModels(objs);
 
-        ArrayList<Object> modelsArray = (ArrayList<Object>) objs.get("models");
-        Map<String, Object> models = (Map<String, Object>) modelsArray.get(0);
-        CodegenModel model = (CodegenModel) models.get("model");
+        ModelMap models = objs.getModels().get(0);
+        CodegenModel model = models.getModel();
 
         // Simplify model var type
         for (CodegenProperty var : model.vars) {

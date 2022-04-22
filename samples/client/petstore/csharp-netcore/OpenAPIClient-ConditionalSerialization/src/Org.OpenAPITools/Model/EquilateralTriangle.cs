@@ -48,9 +48,17 @@ namespace Org.OpenAPITools.Model
         public EquilateralTriangle(string shapeType = default(string), string triangleType = default(string))
         {
             // to ensure "shapeType" is required (not null)
-            this._ShapeType = shapeType ?? throw new ArgumentNullException("shapeType is a required property for EquilateralTriangle and cannot be null");
+            if (shapeType == null)
+            {
+                throw new ArgumentNullException("shapeType is a required property for EquilateralTriangle and cannot be null");
+            }
+            this._ShapeType = shapeType;
             // to ensure "triangleType" is required (not null)
-            this._TriangleType = triangleType ?? throw new ArgumentNullException("triangleType is a required property for EquilateralTriangle and cannot be null");
+            if (triangleType == null)
+            {
+                throw new ArgumentNullException("triangleType is a required property for EquilateralTriangle and cannot be null");
+            }
+            this._TriangleType = triangleType;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -59,13 +67,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "shapeType", IsRequired = true, EmitDefaultValue = false)]
         public string ShapeType
-        { 
+        {
             get{ return _ShapeType;}
             set
             {
                 _ShapeType = value;
                 _flagShapeType = true;
-            } 
+            }
         }
         private string _ShapeType;
         private bool _flagShapeType;
@@ -83,13 +91,13 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         [DataMember(Name = "triangleType", IsRequired = true, EmitDefaultValue = false)]
         public string TriangleType
-        { 
+        {
             get{ return _TriangleType;}
             set
             {
                 _TriangleType = value;
                 _flagTriangleType = true;
-            } 
+            }
         }
         private string _TriangleType;
         private bool _flagTriangleType;
@@ -114,7 +122,7 @@ namespace Org.OpenAPITools.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.Append("class EquilateralTriangle {\n");
             sb.Append("  ShapeType: ").Append(ShapeType).Append("\n");
             sb.Append("  TriangleType: ").Append(TriangleType).Append("\n");
@@ -162,11 +170,17 @@ namespace Org.OpenAPITools.Model
             {
                 int hashCode = 41;
                 if (this.ShapeType != null)
-                    hashCode = hashCode * 59 + this.ShapeType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.ShapeType.GetHashCode();
+                }
                 if (this.TriangleType != null)
-                    hashCode = hashCode * 59 + this.TriangleType.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.TriangleType.GetHashCode();
+                }
                 if (this.AdditionalProperties != null)
-                    hashCode = hashCode * 59 + this.AdditionalProperties.GetHashCode();
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalProperties.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -176,7 +190,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             yield break;
         }
