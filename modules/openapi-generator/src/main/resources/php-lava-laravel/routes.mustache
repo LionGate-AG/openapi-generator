@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+{{>licenseInfo}}
+{{>licenseInfoLumen}}
+{{#apiInfo}}/**
+ * {{appName}}
+ * @version {{appVersion}}
+ */
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It is a breeze. Simply tell Lumen the URIs it should respond to
+| and give it the Closure to call when that URI is requested.
+|
+*/
+
+{{#apis}}
+{{#operations}}
+{{#operation}}
+/**
+ * {{httpMethod}} {{operationId}}
+ * Summary: {{summary}}
+ * Notes: {{notes}}
+ */
+{{#vendorExtensions.x-lumen-middleware}}
+Route::middleware({{vendorExtensions.x-lumen-middleware}})->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', '{{notAbstartClassname}}@{{operationId}}')->name('{{tagName}}.{{operationId}}');
+
+{{/vendorExtensions.x-lumen-middleware}}
+{{^vendorExtensions.x-lumen-middleware}}
+Route::{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', '{{notAbstartClassname}}@{{operationId}}')->name('{{tagName}}.{{operationId}}');
+
+{{/vendorExtensions.x-lumen-middleware}}
+{{/operation}}
+{{/operations}}
+{{/apis}}
+{{/apiInfo}}
