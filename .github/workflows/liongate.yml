@@ -22,4 +22,9 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build with Maven
-      run: mvn --batch-mode --update-snapshots package
+      run: ./mvnw clean install -DskipTests -Dadditionalparam=-Xdoclint:none -DadditionalJOption=-Xdoclint:none
+    - name: Upload CLI jar
+      uses: actions/upload-artifact@v3
+      with:
+        name: OpenApi Generator CLI
+        path: modules/openapi-generator-cli/target/openapi-generator-cli.jar
