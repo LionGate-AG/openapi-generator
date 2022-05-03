@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
  * Notes: {{notes}}
  */
 {{#vendorExtensions.x-lumen-middleware}}
-Route::middleware({{vendorExtensions.x-lumen-middleware}})->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', '{{notAbstartClassname}}@{{operationId}}')->name('{{tagName}}.{{operationId}}');
+Route::middleware('{{vendorExtensions.x-lumen-middleware}}')->{{httpMethod}}('{{{customPathPrefix}}}{{{path}}}', '{{notAbstartClassname}}@{{operationId}}')->name('{{tagName}}.{{operationId}}');
 
 {{/vendorExtensions.x-lumen-middleware}}
 {{^vendorExtensions.x-lumen-middleware}}
