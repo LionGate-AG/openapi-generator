@@ -378,6 +378,7 @@ public class PhpLavaLaravelServerCodegen extends AbstractPhpCodegen {
                                           List<Server> servers) {
         CodegenOperation op = super.fromOperation(path, httpMethod, operation, servers);
         op.path = encodePath(path);
+        op.httpMethod = httpMethod.toLowerCase(Locale.ROOT);
         return op;
     }
 
