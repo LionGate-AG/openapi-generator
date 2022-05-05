@@ -1,7 +1,7 @@
 # This workflow should compile for every newly created tag, create a release and make the  
 # compiled openapi-generator-cli.jar accessible as a release asset
 
-name: Create Release from Tag
+name: 'Liongate: Create Release from Tag'
 
 # Runs for every created tag
 on:
@@ -42,5 +42,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./modules/openapi-generator-cli/target/openapi-generator-cli.jar
-          asset_name: OpenApi Generator CLI
+          asset_name: openapi-generator-cli.jar
           asset_content_type: application/java-archive
