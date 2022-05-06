@@ -47,3 +47,9 @@ Code processor path: ```/modules/openapi-generator/src/main/java/org/openapitool
 This repository is configured to compile and upload the ```openapi-generator-cli.jar``` every time a push to the branch ```liongate``` occurs. But those files are only accessible under workflows and are automatically deleted after a while. To permanently and more easily have access to the ```openapi-generator-cli.jar``` you may create a release. 
 
 If you want to create a new release, it is easiest to just create a new tag. Upon tag creation this repository is configured to automatically create a new release, generate the ```openapi-generator-cli.jar``` and upload it as a release asset. The name of the release will be "Release {TAG_NAME}".
+
+## Pipelines
+
+This repository currently uses 2 pipelines:
+1. liongate.yml: automatically compiles and uploads the ```openapi-generator-cli.jar``` on every push to the branch ```liongate```
+2. create-release-from-tag.yml: automatically creates a new release with the compiled ```openapi-generator-cli.jar``` once a tag is created
