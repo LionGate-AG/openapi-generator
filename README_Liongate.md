@@ -38,5 +38,6 @@ java -jar modules/openapi-generator-cli/target/openapi-generator-cli.jar generat
 
 ## Adjusting generators
 
-Templates path: /modules/openapi-generator/src/main/resources/{GENERATOR_NAME}/
-Code processor path: /modules/openapi-generator/src/main/java/org/openapitools/codegen/languages/
+Templates path: ```/modules/openapi-generator/src/main/resources/{GENERATOR_NAME}/```
+
+Code processor path: ```/modules/openapi-generator/src/main/java/org/openapitools/codegen/languages/```
