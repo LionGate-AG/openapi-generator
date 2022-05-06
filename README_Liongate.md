@@ -41,3 +41,9 @@ java -jar modules/openapi-generator-cli/target/openapi-generator-cli.jar generat
 Templates path: ```/modules/openapi-generator/src/main/resources/{GENERATOR_NAME}/```
 
 Code processor path: ```/modules/openapi-generator/src/main/java/org/openapitools/codegen/languages/```
+
+## Creating a Release
+
+This repository is configured to compile and upload the ```openapi-generator-cli.jar``` every time a push to the branch ```liongate``` occurs. But those files are only accessible under workflows and are automatically deleted after a while. To permanently and more easily have access to the ```openapi-generator-cli.jar``` you may create a release. 
+
+If you want to create a new release, it is easiest to just create a new tag. Upon tag creation this repository is configured to automatically create a new release, generate the ```openapi-generator-cli.jar``` and upload it as a release asset. The name of the release will be "Release {TAG_NAME}".
