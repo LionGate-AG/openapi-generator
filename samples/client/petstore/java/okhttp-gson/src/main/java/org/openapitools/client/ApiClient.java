@@ -366,7 +366,7 @@ public class ApiClient {
      * @return a {@link org.openapitools.client.ApiClient} object
      */
     public ApiClient setDateFormat(DateFormat dateFormat) {
-        this.json.setDateFormat(dateFormat);
+        JSON.setDateFormat(dateFormat);
         return this;
     }
 
@@ -377,7 +377,7 @@ public class ApiClient {
      * @return a {@link org.openapitools.client.ApiClient} object
      */
     public ApiClient setSqlDateFormat(DateFormat dateFormat) {
-        this.json.setSqlDateFormat(dateFormat);
+        JSON.setSqlDateFormat(dateFormat);
         return this;
     }
 
@@ -388,7 +388,7 @@ public class ApiClient {
      * @return a {@link org.openapitools.client.ApiClient} object
      */
     public ApiClient setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
-        this.json.setOffsetDateTimeFormat(dateFormat);
+        JSON.setOffsetDateTimeFormat(dateFormat);
         return this;
     }
 
@@ -399,7 +399,7 @@ public class ApiClient {
      * @return a {@link org.openapitools.client.ApiClient} object
      */
     public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
-        this.json.setLocalDateFormat(dateFormat);
+        JSON.setLocalDateFormat(dateFormat);
         return this;
     }
 
@@ -410,7 +410,7 @@ public class ApiClient {
      * @return a {@link org.openapitools.client.ApiClient} object
      */
     public ApiClient setLenientOnJson(boolean lenientOnJson) {
-        this.json.setLenientOnJson(lenientOnJson);
+        JSON.setLenientOnJson(lenientOnJson);
         return this;
     }
 
@@ -704,7 +704,7 @@ public class ApiClient {
             return "";
         } else if (param instanceof Date || param instanceof OffsetDateTime || param instanceof LocalDate) {
             //Serialize to json string and remove the " enclosing characters
-            String jsonStr = json.serialize(param);
+            String jsonStr = JSON.serialize(param);
             return jsonStr.substring(1, jsonStr.length() - 1);
         } else if (param instanceof Collection) {
             StringBuilder b = new StringBuilder();
@@ -712,7 +712,7 @@ public class ApiClient {
                 if (b.length() > 0) {
                     b.append(",");
                 }
-                b.append(String.valueOf(o));
+                b.append(o);
             }
             return b.toString();
         } else {
@@ -963,7 +963,7 @@ public class ApiClient {
             contentType = "application/json";
         }
         if (isJsonMime(contentType)) {
-            return json.deserialize(respBody, returnType);
+            return JSON.deserialize(respBody, returnType);
         } else if (returnType.equals(String.class)) {
             // Expecting string, return the raw response body.
             return (T) respBody;
@@ -997,11 +997,13 @@ public class ApiClient {
         } else if (isJsonMime(contentType)) {
             String content;
             if (obj != null) {
-                content = json.serialize(obj);
+                content = JSON.serialize(obj);
             } else {
                 content = null;
             }
             return RequestBody.create(content, MediaType.parse(contentType));
+        } else if (obj instanceof String) {
+            return RequestBody.create((String) obj, MediaType.parse(contentType));
         } else {
             throw new ApiException("Content type \"" + contentType + "\" is not supported");
         }
@@ -1421,11 +1423,12 @@ public class ApiClient {
                 for (Object item: list) {
                     if (item instanceof File) {
                         addPartToMultiPartBuilder(mpBuilder, param.getKey(), (File) item);
+                    } else {
+                        addPartToMultiPartBuilder(mpBuilder, param.getKey(), param.getValue());
                     }
                 }
             } else {
-                Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + param.getKey() + "\"");
-                mpBuilder.addPart(partHeaders, RequestBody.create(parameterToString(param.getValue()), null));
+                addPartToMultiPartBuilder(mpBuilder, param.getKey(), param.getValue());
             }
         }
         return mpBuilder.build();
@@ -1457,6 +1460,31 @@ public class ApiClient {
         Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + key + "\"; filename=\"" + file.getName() + "\"");
         MediaType mediaType = MediaType.parse(guessContentTypeFromFile(file));
         mpBuilder.addPart(partHeaders, RequestBody.create(file, mediaType));
+    }
+
+    /**
+     * Add a Content-Disposition Header for the given key and complex object to the MultipartBody Builder.
+     *
+     * @param mpBuilder MultipartBody.Builder
+     * @param key The key of the Header element
+     * @param obj The complex object to add to the Header
+     */
+    private void addPartToMultiPartBuilder(MultipartBody.Builder mpBuilder, String key, Object obj) {
+        RequestBody requestBody;
+        if (obj instanceof String) {
+            requestBody = RequestBody.create((String) obj, MediaType.parse("text/plain"));
+        } else {
+            String content;
+            if (obj != null) {
+                content = JSON.serialize(obj);
+            } else {
+                content = null;
+            }
+            requestBody = RequestBody.create(content, MediaType.parse("application/json"));
+        }
+
+        Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + key + "\"");
+        mpBuilder.addPart(partHeaders, requestBody);
     }
 
     /**
@@ -1526,7 +1554,7 @@ public class ApiClient {
                     KeyStore caKeyStore = newEmptyKeyStore(password);
                     int index = 0;
                     for (Certificate certificate : certificates) {
-                        String certificateAlias = "ca" + Integer.toString(index++);
+                        String certificateAlias = "ca" + (index++);
                         caKeyStore.setCertificateEntry(certificateAlias, certificate);
                     }
                     trustManagerFactory.init(caKeyStore);
@@ -1559,7 +1587,7 @@ public class ApiClient {
     /**
      * Convert the HTTP request body to a string.
      *
-     * @param request The HTTP request object
+     * @param requestBody The HTTP request object
      * @return The string representation of the HTTP request body
      * @throws org.openapitools.client.ApiException If fail to serialize the request body object into a string
      */

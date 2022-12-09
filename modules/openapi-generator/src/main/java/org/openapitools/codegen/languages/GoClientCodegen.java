@@ -41,6 +41,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.*;
 
+import static org.openapitools.codegen.utils.CamelizeOption.LOWERCASE_FIRST_LETTER;
 import static org.openapitools.codegen.utils.StringUtils.camelize;
 
 public class GoClientCodegen extends AbstractGoCodegen {
@@ -100,6 +101,7 @@ public class GoClientCodegen extends AbstractGoCodegen {
 
         apiTemplateFiles.put("api.mustache", ".go");
         modelTemplateFiles.put("model.mustache", ".go");
+        apiTestTemplateFiles.put("api_test.mustache", ".go");
         modelDocTemplateFiles.put("model_doc.mustache", ".md");
         apiDocTemplateFiles.put("api_doc.mustache", ".md");
 
@@ -255,16 +257,7 @@ public class GoClientCodegen extends AbstractGoCodegen {
 
         // add lambda for mustache templates to handle oneOf/anyOf naming
         // e.g. []string => ArrayOfString
-        additionalProperties.put("lambda.type-to-name", new Mustache.Lambda() {
-            @Override
-            public void execute(Template.Fragment fragment, Writer writer) throws IOException {
-                String content = fragment.execute();
-                content = content.trim().replace("[]", "array_of_");
-                content = content.trim().replace("[", "map_of_");
-                content = content.trim().replace("]", "");
-                writer.write(camelize(content));
-            }
-        });
+        additionalProperties.put("lambda.type-to-name", (Mustache.Lambda) (fragment, writer) -> writer.write(typeToName(fragment.execute())));
 
         supportingFiles.add(new SupportingFile("openapi.mustache", "api", "openapi.yaml"));
         supportingFiles.add(new SupportingFile("README.mustache", "", "README.md"));
@@ -274,7 +267,7 @@ public class GoClientCodegen extends AbstractGoCodegen {
         supportingFiles.add(new SupportingFile("client.mustache", "", "client.go"));
         supportingFiles.add(new SupportingFile("response.mustache", "", "response.go"));
         supportingFiles.add(new SupportingFile("go.mod.mustache", "", "go.mod"));
-        supportingFiles.add(new SupportingFile("go.sum", "", "go.sum"));
+        supportingFiles.add(new SupportingFile("go.sum.mustache", "", "go.sum"));
         supportingFiles.add(new SupportingFile(".travis.yml", "", ".travis.yml"));
         supportingFiles.add(new SupportingFile("utils.mustache", "", "utils.go"));
     }
@@ -311,6 +304,11 @@ public class GoClientCodegen extends AbstractGoCodegen {
     @Override
     public String modelFileFolder() {
         return outputFolder + File.separator;
+    }
+
+    @Override
+    public String apiTestFileFolder()  {
+        return outputFolder + File.separator + "test" + File.separator;
     }
 
     @Override
@@ -393,9 +391,9 @@ public class GoClientCodegen extends AbstractGoCodegen {
     }
 
     @Override
-    public CodegenProperty fromProperty(String name, Schema p) {
-        CodegenProperty prop = super.fromProperty(name, p);
-        String cc = camelize(prop.name, true);
+    public CodegenProperty fromProperty(String name, Schema p, boolean required) {
+        CodegenProperty prop = super.fromProperty(name, p, required);
+        String cc = camelize(prop.name, LOWERCASE_FIRST_LETTER);
         if (isReservedWord(cc)) {
             cc = escapeReservedWord(cc);
         }
@@ -658,8 +656,13 @@ public class GoClientCodegen extends AbstractGoCodegen {
             return goImportAlias + "." + model + "(" + example + ")";
         } else if (codegenModel.oneOf != null && !codegenModel.oneOf.isEmpty()) {
             String subModel = (String) codegenModel.oneOf.toArray()[0];
-            String oneOf = constructExampleCode(modelMaps.get(subModel), modelMaps, processedModelMap, depth+1).substring(1);
-            return goImportAlias + "." + model + "{" + subModel + ": " + oneOf + "}";
+            String oneOf;
+            if (modelMaps.get(subModel) == null) {
+                oneOf = "new(" + subModel + ")";// a primitive type
+            } else {
+                oneOf = constructExampleCode(modelMaps.get(subModel), modelMaps, processedModelMap, depth + 1).substring(1);
+            }
+            return goImportAlias + "." + model + "{" + typeToName(subModel) + ": " + oneOf + "}";
         } else {
             ArrayList<Integer> v = new ArrayList<>();
             v.add(depth);
@@ -671,5 +674,12 @@ public class GoClientCodegen extends AbstractGoCodegen {
             propertyExamples.add(constructExampleCode(codegenProperty, modelMaps, processedModelMap, depth+1));
         }
         return "*" + goImportAlias + ".New" + toModelName(model) + "(" + StringUtils.join(propertyExamples, ", ") + ")";
+    }
+
+    private String typeToName(String content) {
+        content = content.trim().replace("[]", "array_of_");
+        content = content.trim().replace("[", "map_of_");
+        content = content.trim().replace("]", "");
+        return camelize(content);
     }
 }
