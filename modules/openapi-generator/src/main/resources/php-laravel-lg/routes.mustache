@@ -1,0 +1,27 @@
+<?php
+
+{{>licenseInfo}}
+
+use Illuminate\Support\Facades\Route;
+
+{{#apiInfo}}
+{{#apis}}
+{{#operations}}
+{{#operation}}
+/**
+ * {{httpMethod}} {{operationId}}
+ * Summary: {{summary}}
+ * Notes: {{notes}}
+ */
+{{#vendorExtensions.x-lumen-middleware}}
+Route::middleware('{{vendorExtensions.x-lumen-middleware}}')->{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}('{{{customPathPrefix}}}{{{path}}}', '{{implClassname}}@{{operationId}}')->name('{{baseName}}.{{operationId}}');
+
+{{/vendorExtensions.x-lumen-middleware}}
+{{^vendorExtensions.x-lumen-middleware}}
+Route::{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}('{{{customPathPrefix}}}{{{path}}}', '{{implClassname}}@{{operationId}}')->name('{{baseName}}.{{operationId}}');
+
+{{/vendorExtensions.x-lumen-middleware}}
+{{/operation}}
+{{/operations}}
+{{/apis}}
+{{/apiInfo}}
