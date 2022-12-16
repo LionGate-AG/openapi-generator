@@ -1,32 +1,29 @@
 <?php
 
-{{>licenseInfo}}
+{{>info}}
 
 namespace {{modelPackageNamespace}};
-
 {{#models}}{{#model}}
 /**
  * {{classname}}
  */
-class {{classname}}  implements \JsonSerializable{
-
+class {{classname}} implements \JsonSerializable
+{
     {{#vars}}
     /** @var {{{dataType}}} ${{name}} {{description}}*/
 {{#deprecated}}
     /** @deprecated */
 {{/deprecated}}
     protected ${{name}};
-
     {{/vars}}
     {{#vars}}
-    public function get{{nameInCamelCase}}(){
+
+    public function get{{nameInCamelCase}}() {
         return $this->{{name}};
     }
-
-    public function set{{nameInCamelCase}}(${{name}}){
+    public function set{{nameInCamelCase}}(${{name}}) {
         $this->{{name}} = ${{name}};
     }
-
     {{/vars}}
 
     /**
@@ -36,13 +33,76 @@ class {{classname}}  implements \JsonSerializable{
      * @return mixed Returns data which can be serialized by json_encode(), which is a value
      * of any type other than a resource.
      */
-    public function jsonSerialize()
-    {
-       return [
-            {{#vars}}
-                "{{name}}" => $this->{{name}},
-            {{/vars}}
+    public function jsonSerialize() {
+        return [
+        {{#vars}}
+            "{{name}}" => $this->{{name}},
+        {{/vars}}
         ];
+    }
+
+    public static function fromJson(array $json, string $prefix = "") {
+        ${{classVarName}} = new {{classname}}();
+
+        {{#vars}}
+        // {{name}} validation
+        if (isset($json['{{name}}'])) {
+            {{^isArray}}
+            {{#maxLength}}
+            if (strlen($json['{{name}}']) > {{maxLength}}) {
+                throw new \InvalidArgumentException('Invalid length for ' . $prefix . '{{name}} in {{classname}}. Must be smaller than or equal to {{maxLength}}.');
+            }
+            {{/maxLength}}
+            {{#minLength}}
+            if (strlen($json['{{name}}']) < {{minLength}}) {
+                throw new \InvalidArgumentException('Invalid length for ' . $prefix . '{{name}} in {{classname}}. Must be bigger than or equal to {{minLength}}.');
+            }
+            {{/minLength}}
+            {{#maximum}}
+            if ($json['{{name}}'] >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{maximum}}) {
+                throw new \InvalidArgumentException('Invalid value for ' . $prefix . '{{name}} in {{classname}}. Must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{maximum}}.');
+            }
+            {{/maximum}}
+            {{#minimum}}
+            if ($json['{{name}}'] <{{#exclusiveMinimum}}={{/exclusiveMinimum}} {{minimum}}) {
+                throw new \InvalidArgumentException('Invalid value for ' . $prefix . '{{name}} in {{classname}}. Must be bigger than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{minimum}}.');
+            }
+            {{/minimum}}
+            {{#pattern}}
+            if (!preg_match("{{{pattern}}}", $json['{{name}}'])) {
+                throw new \InvalidArgumentException('Invalid value for ' . $prefix . '{{name}} in {{classname}}. Must conform to the pattern {{{pattern}}} .');
+            }
+            {{/pattern}}
+            ${{classVarName}}->set{{nameInCamelCase}}($json['{{name}}']);
+            {{/isArray}}
+            {{#isArray}}
+            {{#maxItems}}
+            if (count($json['{{name}}']) > {{maxItems}}) {
+                throw new \InvalidArgumentException('Invalid length for ' . $prefix . '{{name}} in {{classname}}. Number of items must be less than or equal to {{maxItems}}.');
+            }
+            {{/maxItems}}
+            {{#minItems}}
+            if (count($json['{{name}}']) < {{minItems}}) {
+                throw new \InvalidArgumentException('Invalid length for ' . $prefix . '{{name}} in {{classname}}. Number of items must be greater than or equal to {{minItems}}.');
+            }
+            {{/minItems}}
+            ${{name}} = [];
+            for($i = 0; $i < count($json['{{name}}']); ++$i) {
+                ${{name}}[$i] = {{#items}}{{openApiType}}{{/items}}::fromJson($json['{{name}}'][$i], $prefix . '{{name}}.' . $i . '.');
+            }
+            ${{classVarName}}->set{{nameInCamelCase}}(${{name}});
+            {{/isArray}}
+        } else {
+            {{#required}}
+            throw new \InvalidArgumentException('Missing the required parameter ' . $prefix . '{{name}} in {{classname}}.');
+            {{/required}}
+            {{^required}}
+            ${{classVarName}}->set{{nameInCamelCase}}({{{defaultValue}}});
+            {{/required}}
+        }
+
+        {{/vars}}
+        return ${{classVarName}};
     }
 }
 {{/model}}{{/models}}

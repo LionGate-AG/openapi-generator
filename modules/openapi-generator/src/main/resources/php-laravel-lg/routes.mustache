@@ -1,6 +1,6 @@
 <?php
 
-{{>licenseInfo}}
+{{>info}}
 
 use Illuminate\Support\Facades\Route;
 
@@ -10,17 +10,12 @@ use Illuminate\Support\Facades\Route;
 {{#operation}}
 /**
  * {{httpMethod}} {{operationId}}
- * Summary: {{summary}}
+ * Summary: {{{summary}}}
  * Notes: {{notes}}
  */
-{{#vendorExtensions.x-lumen-middleware}}
-Route::middleware('{{vendorExtensions.x-lumen-middleware}}')->{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}('{{{customPathPrefix}}}{{{path}}}', '{{implClassname}}@{{operationId}}')->name('{{baseName}}.{{operationId}}');
+Route::{{#vendorExtensions.x-laravel-middleware}}middleware('{{.}}')->{{/vendorExtensions.x-laravel-middleware}}{{!
+     }}{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}('{{{customPathPrefix}}}{{{path}}}', '{{implClassname}}@{{operationId}}')->name('{{baseName}}.{{operationId}}');
 
-{{/vendorExtensions.x-lumen-middleware}}
-{{^vendorExtensions.x-lumen-middleware}}
-Route::{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}('{{{customPathPrefix}}}{{{path}}}', '{{implClassname}}@{{operationId}}')->name('{{baseName}}.{{operationId}}');
-
-{{/vendorExtensions.x-lumen-middleware}}
 {{/operation}}
 {{/operations}}
 {{/apis}}

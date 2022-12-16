@@ -4,8 +4,11 @@ import static org.openapitools.codegen.utils.StringUtils.camelize;
 
 import java.io.File;
 import org.openapitools.codegen.*;
+import org.openapitools.codegen.utils.ModelUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import io.swagger.v3.oas.models.media.Schema;
 
 public class PhpLaravelLgServerCodegen
         extends AbstractPhpCodegen {
@@ -87,5 +90,31 @@ public class PhpLaravelLgServerCodegen
             return String.valueOf(pathChars);
         }
         return packagePath;
+    }
+
+    @Override
+    @SuppressWarnings("rawtypes")
+    public String toDefaultValue(Schema p) {
+        if(p.getDefault() != null) {
+            if(ModelUtils.isStringSchema(p)) {
+                return "'" + p.getDefault() + "'";
+            }
+
+            return p.getDefault().toString();
+        }
+
+        if(ModelUtils.isStringSchema(p)) {
+            return "''";
+        }
+        if(ModelUtils.isArraySchema(p)) {
+            return "[]";
+        }
+
+        return "null";
+    }
+
+    @Override
+    public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
+        property.dataType = property.dataType.replace(".", "\\");
     }
 }
