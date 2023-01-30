@@ -3,7 +3,13 @@ package org.openapitools.codegen.languages;
 import static org.openapitools.codegen.utils.StringUtils.camelize;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 import org.openapitools.codegen.*;
+import org.openapitools.codegen.model.ModelMap;
+import org.openapitools.codegen.model.ModelsMap;
 import org.openapitools.codegen.utils.ModelUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +23,8 @@ public class PhpLaravelLgServerCodegen
 
     static final Logger LOGGER = LoggerFactory.getLogger(
             PhpLaravelLgServerCodegen.class);
+
+    private Map<String, String> modelFilenames = new HashMap<String, String>();
 
     public CodegenType getTag() {
         return CodegenType.SERVER;
@@ -41,7 +49,7 @@ public class PhpLaravelLgServerCodegen
         apiTemplateFiles.put("api.mustache", ".php");
         embeddedTemplateDir = templateDir = "php-laravel-lg";
         apiPackage = "App.Http.Controllers.Generated";
-        modelPackage = "App.Http.Models.Generated";
+        modelPackage = "App.Http.Resources.Generated";
 
         apiTestTemplateFiles.clear();
         apiDocTemplateFiles.clear();
@@ -64,6 +72,16 @@ public class PhpLaravelLgServerCodegen
 
         return "Abstract" + implClassname;
     }
+
+    @Override
+    public String toModelFilename(String name) {
+        if(modelFilenames.containsKey(name)) {
+            return camelize(modelFilenames.get(name));
+        }
+
+        return camelize(name);
+    }
+
 
     @Override
     public String apiFileFolder() {
@@ -116,5 +134,54 @@ public class PhpLaravelLgServerCodegen
     @Override
     public void postProcessModelProperty(CodegenModel model, CodegenProperty property) {
         property.dataType = property.dataType.replace(".", "\\");
+        if(property.isArray) {
+            property.items.dataType = property.items.dataType.replace(".", "\\");
+        }
+    }
+
+    @Override
+    public void postProcessParameter(CodegenParameter parameter) {
+        parameter.dataType = parameter.dataType.replace(".", "\\");
+    }
+
+    @Override
+    public ModelsMap postProcessModels(ModelsMap objs) {
+        objs = super.postProcessModels(objs);
+
+        ModelMap models = objs.getModels().get(0);
+        CodegenModel model = models.getModel();
+
+        modelFilenames.put(model.getName(), model.getClassFilename());
+
+        if(model.getInterfaces() != null && model.getInterfaces().contains("DbModel")) {
+            model.vendorExtensions.put("x-isResource", Boolean.TRUE);
+            model.setClassname(model.getClassname()+"Resource");
+            modelFilenames.put(model.getName(), model.getClassFilename()+"Resource");
+        } else {
+            model.vendorExtensions.put("x-isResource", Boolean.FALSE);
+        }
+        if(model.getInterfaces() != null && model.getInterfaces().contains("PageableList")) {
+            model.vendorExtensions.put("x-isCollection", Boolean.TRUE);
+            model.setClassname(getCollectionClassName(model));
+            modelFilenames.put(model.getName(), getCollectionClassName(model));
+        } else {
+            model.vendorExtensions.put("x-isCollection", Boolean.FALSE);
+        }
+
+        for(CodegenProperty var : model.getVars()) {
+            var.nameInSnakeCase = var.nameInSnakeCase.toLowerCase(Locale.ROOT);
+        }
+
+        return objs;
+    }
+
+    private String getCollectionClassName(CodegenModel model) {
+        for(CodegenProperty var : model.getVars()) {
+            if(var.isArray) {
+                return var.items.baseType + "Collection";
+            }
+        }
+
+        return model.getClassname() + "Collection";
     }
 }
