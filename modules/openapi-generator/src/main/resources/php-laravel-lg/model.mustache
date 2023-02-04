@@ -17,21 +17,34 @@ use Illuminate\Http\Resources\Json\ResourceCollection;{{/vendorExtensions.x-isCo
  */
 class {{classname}}{{#vendorExtensions.x-isResource}} extends JsonResource{{/vendorExtensions.x-isResource}}{{#vendorExtensions.x-isCollection}} extends ResourceCollection{{/vendorExtensions.x-isCollection}}
 {   {{^vendorExtensions.x-isResource}}{{^vendorExtensions.x-isCollection}}
-    public static function getValidationRules(String $prefix = "") 
+    public static function getValidationRules(string $prefix = ""): array
     {
         $validationRules = [
             {{#vars}}
-            {{^isArray}}
             $prefix.'{{name}}' => '{{#required}}required|{{/required}}{{#isInteger}}integer|{{/isInteger}}{{!
             }}{{#isArray}}array|{{#maxLength}}max:{{maxLength}}|{{/maxLength}}{{#minLength}}min:{{minLength}}|{{/minLength}}{{/isArray}}{{!
             }}{{#maximum}}lt{{^exclusiveMaximum}}e{{/exclusiveMaximum}}:{{maximum}}|{{/maximum}}{{#minimum}}gt{{^exclusiveMinimum}}e{{/exclusiveMinimum}}:{{minimum}}|{{/minimum}}{{!
-            }}{{#pattern}}regex:{{{pattern}}}|{{/pattern}}{{#isBoolean}}boolean|{{/isBoolean}}',
-            {{/isArray}}
+            }}{{#pattern}}regex:{{{pattern}}}|{{/pattern}}{{#isBoolean}}boolean|{{/isBoolean}}{{#vendorExtensions.x-isUrl}}url|{{/vendorExtensions.x-isUrl}}',
             {{/vars}}
         ];
-        {{#vars}}{{#isArray}}{{#items.isModel}}$validationRules = array_merge($validationRules, {{items.dataType}}::getValidationRules('{{name}}.*.'));
+        {{#vars}}{{#isArray}}{{#items.isModel}}$validationRules = array_merge($validationRules, {{items.dataType}}::getValidationRules($prefix.'{{name}}.*.'));
         {{/items.isModel}}{{/isArray}}{{/vars}}
         return $validationRules;
+    }
+    
+    public static function setDefaults(array &$validated): void
+    {
+        {{#vars}}
+        {{^required}}
+        if(!isset($validated['{{name}}']))
+            $validated['{{name}}'] = {{{defaultValue}}};
+        {{/required}}
+        {{#isArray}}
+        foreach($validated['{{name}}'] as &$elem) {
+            {{items.dataType}}::setDefaults($elem);
+        }
+        {{/isArray}}
+        {{/vars}}
     }{{/vendorExtensions.x-isCollection}}{{/vendorExtensions.x-isResource}}{{!
     }}{{#vendorExtensions.x-isResource}}
     /**

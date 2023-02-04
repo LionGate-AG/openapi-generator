@@ -64,6 +64,9 @@ use Illuminate\Routing\Controller as BaseController;
         {{/isModel}}
         {{/required}}
         {{/allParams}}
+        {{#bodyParams}}
+        {{dataType}}::setDefaults($validated);
+        {{/bodyParams}}
 
         return $validated;
     }

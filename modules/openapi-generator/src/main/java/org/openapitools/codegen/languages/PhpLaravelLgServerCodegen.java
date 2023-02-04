@@ -170,6 +170,11 @@ public class PhpLaravelLgServerCodegen
 
         for(CodegenProperty var : model.getVars()) {
             var.nameInSnakeCase = var.nameInSnakeCase.toLowerCase(Locale.ROOT);
+            if(var.getFormat() != null && var.getFormat().equals("url")){
+                var.vendorExtensions.put("x-isUrl", Boolean.TRUE);
+            } else {
+                var.vendorExtensions.put("x-isUrl", Boolean.FALSE);
+            }
         }
 
         return objs;
